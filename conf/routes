@@ -8,6 +8,12 @@ GET     /                                       Application.index
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
+# Adminstration
+*       /admin                                  module:crud
+
+# Import Secure routes
+*       /                                       module:secure
+
 # Map static resources from the /app/public folder to the / path
 GET     /                                       staticDir:public
 

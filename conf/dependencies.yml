@@ -3,3 +3,5 @@
 require:
     - play
     - play -> sass 1.1
+    - play -> crud
+    - play -> secure
