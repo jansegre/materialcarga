@@ -1,0 +1,27 @@
+Esse projeto usa o play-framework
+
+Para desenvolver no branch dev antes de iniciar seu
+trabalho abra um terminal na pasta do projeto e digite:
+    git checkout dev
+
+Para retornar para o branch master digite:
+    git checkout master
+
+Se vc já tiver o play funcionando digite:
+    play dependencies --sync
+
+Se vc usa o eclipse digite o seguinte:
+    play eclipsify
+e em seguida importe o projeto pelo eclipse.
+É aconselhavel rodar esse comando sempre que mudar as
+dependencias do projeto.
+
+Se vc usa o netbeans digite:
+    play netbeansify
+e em seguida importe o projeto pelo netbeans.
+
+Não é nescessário uma IDE.
+
+Para rodar o projeto no modo de desenvolvimento digite:
+    play run
+
