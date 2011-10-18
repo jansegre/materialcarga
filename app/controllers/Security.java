@@ -20,7 +20,7 @@ public class Security extends Secure.Security {
     }
     
     static void onAuthenticated() {
-        Admin.index();
+    	Application.index();
     }
     
 }
