@@ -22,6 +22,17 @@ e em seguida importe o projeto pelo netbeans.
 
 Não é nescessário uma IDE.
 
+É nescessário uma database, por padrão o projeto está
+configurado para usar o postgres local, para usar o
+PostgreSQL é recomendado instalar o PgAdmin, crie uma
+database 'materialcarga' com usuário 'materialcarga' e
+senha 'carga1234' na porta padrão (5432)
+Para não usar uma database edite mude a configuração no
+arquivo conf/application.conf, descomente a linha 86 que
+mostra '# db=mem' para 'db=mem' e comente a linha 92.
+
 Para rodar o projeto no modo de desenvolvimento digite:
     play run
-
+aperte Ctrl+C para fechar esse servidor, se é a primeira
+vez que roda pode ser nescessário reiniciar uma vez para
+popular a database.
