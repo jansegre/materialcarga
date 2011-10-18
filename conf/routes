@@ -5,8 +5,6 @@
 # Home page
 GET     /                                       Application.index
 
-# Ignore favicon requests
-GET     /favicon.ico                            404
 
 # Adminstration
 *       /admin                                  module:crud
@@ -14,8 +12,12 @@ GET     /favicon.ico                            404
 # Import Secure routes
 *       /                                       module:secure
 
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
 # Map static resources from the /app/public folder to the / path
-GET     /                                       staticDir:public
+GET     /public                                 staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{action}/?                             Application.{action}
+*       /{controller}/{action}/?                {controller}.{action}

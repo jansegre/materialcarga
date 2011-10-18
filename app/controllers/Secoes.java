@@ -6,6 +6,6 @@ import play.mvc.*;
 
 @Check("admin")
 @With(Secure.class)
-@CRUD.For(Secao.class)//Nescessário pois Secoes não é "plural" de Secao
+@CRUD.For(Secao.class)//Nescessário pois Secoes != Secaos (Secao" + s)
 public class Secoes extends CRUD {
 }

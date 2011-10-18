@@ -1,7 +1,12 @@
 # Textos em português para o site
 #
-title=Sistema de Controle de Material Carga
-home.title=Material Carga
+main.title=Controle de Material Carga
+main.ime=IME
+main.secao=SE/8
+main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
+
+home.title=Sistema de Controle de Material Carga
+home.welcome=Bem vindo, &{%s}
 
 # Textos para o modulo secure
 secure.title=Login
@@ -43,15 +48,15 @@ crud.delete.error=Não é possível remover esse objeto
 crud.search=Procurar
 crud.none=(Nenhum(a))
 crud.selectValue=(Por favor, selecione um valor)
-crud.help.required=Required.
-crud.help.minlength=Min length is %d.
-crud.help.maxlength=Max length is %d.
-crud.help.email=Valid email address.
-crud.help.dateformat=&{%s} format.
-crud.help.numeric=Numeric.
-crud.help.min=Must be greater than %d.
-crud.help.future=In the future.
-crud.help.past=In the past.
-crud.help.after=After %s.
-crud.help.before=Before %s.
-crud.help.range=Between %d and %d
+crud.help.required=Nescessário.
+crud.help.minlength=Mínimo de %d caracteres.
+crud.help.maxlength=Máximo de %d caracteres.
+crud.help.email=Email válido.
+crud.help.dateformat=Formato: &{%s}.
+crud.help.numeric=Numérico.
+crud.help.min=Maior que %d.
+crud.help.future=No futuro.
+crud.help.past=No passado.
+crud.help.after=Depois de %s.
+crud.help.before=Antes de %s.
+crud.help.range=Entre %d e %d

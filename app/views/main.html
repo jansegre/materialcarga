@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="${_response_encoding}">
 #{get 'moreMetatags' /}
-<title>#{get 'title' /}</title>
-<link rel="stylesheet" media="screen" href="@{'/public/styles/screen.scss'}">
+<link rel="shortcut icon" href="@{'/public/images/favicon.png'}">
+<link rel="stylesheet" href="@{'/public/styles/screen.scss'}" />
 #{get 'moreStyles' /}
-<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-<script src="@{'/public/scripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/scripts/jquery-1.6.4.min.js'}"></script>
 #{get 'moreScripts' /}
-</head>
-<body>
+<title>#{get 'title' /}</title>
+<div class="wrapper">
+<header>
+<div class="container">
+<img src="@{'/public/images/logo.png'}" alt="&{'main.ime'}" />
+<div class="title">
+<h1>&{'main.title'}</h1>
+<h2>&{'main.secao'}</h2>
+</div>
+</div>
+</header>
 #{doLayout /}
-</body>
+<div class="push"></div>
+</div>
+<footer>
+<span>&{'main.authors'}</span>
+</footer>
 </html>

@@ -11,9 +11,9 @@ import play.data.validation.*;
 public class Secao extends Model {
 	@Required
 	public String nome;
-	
+
 	public String descricao;
-	
+
 	public String toString() {
 		return nome;
 	}

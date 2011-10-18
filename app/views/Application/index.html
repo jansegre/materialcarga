@@ -1,3 +1,36 @@
 #{extends 'main.html' /}
-#{set title:messages.get('title') /}
-<h1>&{'home.title'}</h1>
+#{set title:messages.get('home.title') /}
+<div id="home">
+	<div id="top">
+		<p class="welcome">&{'home.welcome', 'fulano'}</p>
+		<form id="search" action="#" method="post">
+			<input id="q" type="search" />
+			<input type="submit" value="Buscar Material" />
+			<a href="#">Busca Avançada</a>
+		</form>
+		<a id="logout" href="#">Sair</a>
+	</div>
+	<div id="cat">
+		<ul class="cat">
+			<li><a class="first" href="#">Home</a></li>
+			<li><a href="#">Carga</a></li>
+			<li><a href="#">Livros</a></li>
+			<li><a href="#">Computadores</a></li>
+			<li><a href="#">Descarga</a></li>
+			<li><a href="#">Lab Comp</a></li>
+		</ul>
+	</div>
+	<div id="main">
+		<nav>
+				<a href="#">Novo</a>
+				<a href="#">Corrigir</a>
+				<a href="#">Remover</a>
+				<a href="#">Transferir</a>
+				<a href="#">Descarregar</a>
+		</nav>
+		<table>
+			<tr><td>MATERIAL X adicionado por fulano dia 11/7/2012.</td></tr>
+			<tr><td>MATERIAL X adicionado por fulano dia 10/7/2012.</td></tr>
+		</table>
+	</div>
+</div>
