@@ -26,6 +26,7 @@ secure.logout=Você foi desconectado com sucesso.
 
 # Textos para o modulo crud
 crud.title=Administração
+crud.logout=Sair
 crud.home=Home
 crud.blank=Novo
 crud.index.title=Escolha a entidade que deseja alterar
@@ -48,9 +49,9 @@ crud.hasErrors=Por favor, corriga o(s) erro(s)
 crud.blank.title=Adicionar &{%s}
 crud.saveAndAddAnother=Salvar e criar outro
 crud.delete=Remover &{%s}
-crud.created=The &{%s} foi criado
-crud.saved=The &{%s} foi salvo
-crud.deleted=The &{%s} foi removido
+crud.created=A instância de &{%s} foi criada
+crud.saved=A instância de &{%s} foi salva
+crud.deleted=A instância de &{%s} foi removida
 crud.delete.error=Não é possível remover esse objeto
 crud.search=Procurar
 crud.none=(Nenhum(a))
