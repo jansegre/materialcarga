@@ -8,6 +8,13 @@ main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
 home.title=Sistema de Controle de Material Carga
 home.welcome=Bem vindo, &{%s}
 
+error.403.title=Não Autorizado
+error.403.message=O usuário atual não possui permissão para acessar <strong>&{%s}</strong>.
+error.404.title=Não Encontrado
+error.404.message=Nao há nenhum conteúdo em <strong>&{%s}</strong>.
+error.500.title=Erro no Servidor
+error.500.message=Ocorreu um erro no servidor, o evento foi registrado com id <strong>&{%s}</strong>.
+
 # Textos para o modulo secure
 secure.title=Login
 secure.username=Usuário:

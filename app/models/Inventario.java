@@ -9,13 +9,26 @@ import play.data.validation.*;
 
 @Entity
 public class Inventario extends Model {
+	
+	@ManyToOne
+	public Classe classe;
+	
+	@Required
+	@ManyToOne
+	public Usuario usuario;
+	
+	@ManyToOne
+	public Categoria categoria;
+
+	@ManyToOne
+	public Simatex simatex;
+	
+	@ManyToOne
+	public Secao secao;
 
 	public int contacontabil;
 
 	public int fichageral;
-
-	@ManyToOne
-	public Classe classe;
 
 	@Required
 	public String material;
@@ -34,22 +47,9 @@ public class Inventario extends Model {
 
 	public float valtotal;
 
-	@ManyToMany
-	public Secao secao;
-
 	public String observacoes;
 
 	public String NI;
-
-	@Required
-	@ManyToOne
-	public Usuario usuario;
-
-	@ManyToOne
-	public Categoria categoria;
-
-	@ManyToOne
-	public Simatex simatex;
 
 	public String toString() {
 		return observacoes;
