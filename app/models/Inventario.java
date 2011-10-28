@@ -52,6 +52,6 @@ public class Inventario extends Model {
 	public String NI;
 
 	public String toString() {
-		return observacoes;
+		return material;
 	}
 }
