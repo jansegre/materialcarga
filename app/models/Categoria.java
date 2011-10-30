@@ -9,10 +9,18 @@ import play.data.validation.*;
 
 @Entity
 public class Categoria extends Model {
+	
 	@Required
-	public String nome;
+	public String name;
+	
+	@Required
+	public String slug;
+	
+	public static Categoria findBySlug(String slug) {
+		return find("slug", slug).first();
+	}
 
 	public String toString() {
-		return nome;
+		return name;
 	}
 }

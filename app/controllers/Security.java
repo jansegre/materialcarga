@@ -5,14 +5,16 @@ import models.*;
 public class Security extends Secure.Security {
 
 	static boolean authentify(String username, String password) {
-		return Usuario.connect(username, password) != null;
+		return User.connect(username, password);
 	}
 
 	static boolean check(String profile) {
-		if ("admin".equals(profile)) {
-			return Usuario.find("byNome", connected()).<Usuario> first().isAdmin;
-		}
-		return false;
+		User user = connectedUser();
+		return user != null && user.checkProfile(profile);
+	}
+	
+	static User connectedUser() {
+		return User.findByLogin(connected());
 	}
 
 	static void onDisconnected() {
@@ -20,10 +22,14 @@ public class Security extends Secure.Security {
 	}
 
 	static void onAuthenticated() {
-		if (check("admin")) {
+		switch (connectedUser().profile) {
+		case ADMIN:
 			CRUD.index();
-		} else {
+			break;
+		case USER:
+		default:
 			Application.index();
+			break;
 		}
 	}
 

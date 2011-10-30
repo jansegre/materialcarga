@@ -9,47 +9,57 @@ import play.data.validation.*;
 
 @Entity
 public class Inventario extends Model {
-	
+
 	@ManyToOne
 	public Classe classe;
-	
+
 	@Required
 	@ManyToOne
-	public Usuario usuario;
-	
-	@ManyToOne
-	public Categoria categoria;
+	public User usuario;
+
+	@ManyToMany
+	public List<Categoria> categorias;
 
 	@ManyToOne
 	public Simatex simatex;
-	
+
 	@ManyToOne
 	public Secao secao;
+	
+	@OneToMany(mappedBy="inventario", cascade=CascadeType.ALL)
+	public List<Codigo> codigos;
 
-	public int contacontabil;
+	public Integer contacontabil;
 
-	public int fichageral;
+	public Integer fichageral;
 
 	@Required
 	public String material;
 
-	public int nba;
+	public Integer NBa;
 
 	@Required
-	public int entrada;
+	public Integer entrada;
 
-	public int saida;
+	public Integer saida;
 
-	public int existencia;
+	public Integer existencia;
 
 	@Required
-	public float valunit;
+	public Double valunit;
 
-	public float valtotal;
+	public Double valtotal;
 
+	@MaxSize(2000)
 	public String observacoes;
 
 	public String NI;
+
+	public static List<Inventario> findByCategoria(String slug) {
+		return Inventario
+				.find("select distinct i from Inventario i join i.categoria as c where c.slug = ?",
+						slug).fetch();
+	}
 
 	public String toString() {
 		return material;

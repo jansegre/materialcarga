@@ -13,7 +13,7 @@ public class Classe extends Model {
 	public String nome;
 
 	@Required
-	public int codigo;
+	public Integer codigo;
 
 	public String toString() {
 		return nome;
