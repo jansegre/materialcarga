@@ -9,11 +9,12 @@ main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
 
 home.title=Sistema de Controle de Material Carga
 home.welcome=Bem vindo, &{%s}
+home.password=Mudar senha
 
-conf.title=Configurações
-conf.password=Nova senha
-conf.password2=Confirmação
-conf.submit=Enviar
+password.title=Configurações
+password.first=Nova senha
+password.second=Confirmação
+password.submit=Enviar
 
 error.403.title=Não Autorizado
 error.403.message=O usuário atual não possui permissão para acessar <strong>&{%s}</strong>.
@@ -66,7 +67,7 @@ crud.selectValue=(Por favor, selecione um valor)
 crud.help.required=Nescessário.
 crud.help.minlength=Mínimo de %d caracteres.
 crud.help.maxlength=Máximo de %d caracteres.
-crud.help.email=Email deve serválido.
+crud.help.email=Email deve ser válido.
 crud.help.dateformat=Formato: &{%s}.
 crud.help.numeric=Campo numérico.
 crud.help.min=Maior que %d.

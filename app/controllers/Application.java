@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+import play.i18n.Messages;
 
 import java.util.*;
 
@@ -11,27 +12,51 @@ import models.*;
 @With(Secure.class)
 public class Application extends Controller {
 	
-	@Before(unless={"conf", "chpw"})
+	@Before(unless={"password", "changePassword"})
 	static void checkchpw() {
-		User user = Security.connectedUser(); 
+		User user = Security.getConnectedUser(); 
 		if(user != null && user.changePassword) {
-			conf();
+			params.flash();
+			flash.error(Messages.get("password.change"));
+			password();
 		}
+	}
+	
+	public static void about() {
+		render();
 	}
 
 	public static void index() {
-		User user = Security.connectedUser();
+		User user = Security.getConnectedUser();
 		List<Categoria> categorias = Categoria.findAll();
 		render(user, categorias);
 	}
 	
-	public static void conf() {
-		User user = Security.connectedUser();
-		render(user);
+	public static void add() {
+		User user = Security.getConnectedUser();
+		List<Categoria> categorias = Categoria.findAll();
+		render(user, categorias);
 	}
 	
-	public static void chpw(@Required @MinSize(5) String password, @Equals("password") String password2) {
-		
+	public static void password() {
+		User user = Security.getConnectedUser();
+		List<Categoria> categorias = Categoria.findAll();
+		render(user, categorias);
+	}
+	
+	public static void changePassword(@Required @MinSize(5) String password, @Equals("password") String password2) {
+		if (validation.hasErrors()) {
+            validation.keep();
+            params.flash();
+            flash.error(Messages.get("password.error"));
+            password();
+        } else {
+        	User user = Security.getConnectedUser();
+        	user.passwordHash = password;
+        	user.changePassword = false;
+        	user.save();
+        	password();
+        }
 	}
 	
 	public static void cat(String slug) {

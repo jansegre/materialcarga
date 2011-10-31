@@ -9,11 +9,12 @@ public class Security extends Secure.Security {
 	}
 
 	static boolean check(String profile) {
-		User user = connectedUser();
+		if(profile.equals("public")) return true;
+		User user = getConnectedUser();
 		return user != null && user.checkProfile(profile);
 	}
 	
-	static User connectedUser() {
+	static User getConnectedUser() {
 		return User.findByLogin(connected());
 	}
 
@@ -22,7 +23,7 @@ public class Security extends Secure.Security {
 	}
 
 	static void onAuthenticated() {
-		switch (connectedUser().profile) {
+		switch (getConnectedUser().profile) {
 		case ADMIN:
 			CRUD.index();
 			break;
