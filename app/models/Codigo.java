@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import play.db.jpa.*;
 import play.data.validation.*;
+import play.i18n.Messages;
 
 @Entity
 public class Codigo extends Model {
@@ -21,6 +22,14 @@ public class Codigo extends Model {
 	public String observacoes;
 
 	public String estado;
+	
+	public Codigo(Inventario inventario, String codigo) {
+		this.inventario = inventario;
+		this.codigo = codigo;
+		this.destino = "";
+		this.observacoes = "";
+		this.estado = Messages.get("codigo.novo");
+	}
 
 	public String toString() {
 		return codigo;

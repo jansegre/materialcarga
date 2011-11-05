@@ -1,13 +1,62 @@
-#{extends 'Application/layout.html' /}
-#{set title: messages.get('home.title') /}
-<nav>
-<a href="#">Novo</a>
-<a href="#">Corrigir</a>
-<a href="#">Remover</a>
-<a href="#">Transferir</a>
-<a href="#">Descarregar</a>
+#{extends 'layout.html' /}
+#{set title:messages.get('home.title') /}
+<div id="home">
+<div id="top">
+<p class="welcome">&{'home.welcome', user?.posto != null? user.posto + ' ' + user.name : user?.name}</p>
+<form id="search" action="#" method="post">
+<input id="q" type="search" />
+<input type="submit" value="Buscar Material" />
+<a href="#">Busca Avançada</a>
+</form>
+<a href="#password">&{'home.password'}</a>
+<a id="logout" href="@{Secure.logout()}">Sair</a>
+</div>
+#{if flash.error}
+<small id="flash">&{flash.error}</small>
+#{/if}
+#{if flash.success}
+<small id="flash">&{flash.success}</small>
+#{/if}
+<div id="cat">
+<ul class="cat">
+<li><a class="first" href="@{index()}">Home</a></li>
+#{list items:categorias, as:'cat'}
+<li><a href="#${cat.slug}">${cat.name}</a></li>
+#{/list}
+</ul>
+</div>
+<div id="main">
+
+<nav id="menu">
+<a href="#new">&{'home.new'}</a>
+<a href="#change">&{'home.change'}</a>
+<a href="#remove">&{'home.remove'}</a>
+<a href="#transfer">&{'home.transfer'}</a>
+<a href="#unload">&{'home.unload'}</a>
 </nav>
-<table>
-<tr><td>MATERIAL X adicionado por fulano dia 11/7/2012.</td></tr>
-<tr><td>MATERIAL X adicionado por fulano dia 10/7/2012.</td></tr>
-</table>
+
+<div id="list" class="hide">
+#{homelist /}
+</div>
+
+<div id="add" class="hide">
+#{homeadd /}
+</div>
+
+<div id="password" class="hide">
+#{homepass /}
+</div>
+
+<script>
+//Adicionar codigo
+$('#addLabel').click(function() {
+	$.post('@{addLabel()}', {codigo: '123123'}, function(label) {
+		$('#labels').prepend(
+			'<li>' + label.id + ' ' + label.codigo + '</li>'
+		)
+	}, 'json')
+})
+</script>
+
+</div>
+</div>

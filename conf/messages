@@ -10,11 +10,21 @@ main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
 home.title=Sistema de Controle de Material Carga
 home.welcome=Bem vindo, &{%s}
 home.password=Mudar senha
+home.new=Novo
+home.change=Corrigir
+home.remove=Remover
+home.transfer=Transferir
+home.unload=Descarregar
+home.print=Preparar para Impressão
 
-password.title=Configurações
+password.title=Mudar senha
+password.current=Senha atual
 password.first=Nova senha
 password.second=Confirmação
 password.submit=Enviar
+password.change=Por favor, mude sua senha.
+password.error=Erro! As senhas devem estar iguais e com pelomenos 5 caractéres.
+password.success=Senha mudada com sucesso.
 
 error.403.title=Não Autorizado
 error.403.message=O usuário atual não possui permissão para acessar <strong>&{%s}</strong>.
@@ -22,6 +32,10 @@ error.404.title=Não Encontrado
 error.404.message=Nao há nenhum conteúdo em <strong>&{%s}</strong>.
 error.500.title=Erro no Servidor
 error.500.message=Ocorreu um erro no servidor, o evento foi registrado com id <strong>&{%s}</strong>.
+
+# Textos para modelos
+
+estado.novo=Novo
 
 # Textos para o modulo secure
 secure.title=Login
