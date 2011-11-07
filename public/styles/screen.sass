@@ -1,5 +1,3 @@
-@import compass/css3, compass/utilities
-
 *
   margin: 0
   
@@ -10,6 +8,9 @@ html, body
 
 .hide
   display: none
+
+h1, h2, h3, h4
+  color: #001133
 
 a
   color: #223355
@@ -29,12 +30,22 @@ header
     padding: 15px 0 0
 
 #top
+  padding:
+    left: 167px
+    right: 13px
+  .welcome
+    display: inline-block
+    //width: 200px
+  #search
+    display: inline-block
+    #query
+      width: 248px
   .menu
     display: inline-block
     float: right
     a
       margin:
-        right: 10px
+        left: 10px
 
 .title
   text-align: center
@@ -114,16 +125,15 @@ footer
   padding: 10px
   width: 1000px
   margin: 0 auto 0
-  .welcome
-    display: inline-block
-    width: 200px
-  #search
-    display: inline-block
   #cat
     display: inline-block
     margin: 20px auto 20px
     //float: left
     width: 152px
+    text:
+      align: right
+    .cat
+      padding: 0
     button
       font:
         size: 14px
@@ -152,6 +162,16 @@ footer
   min-height: 300px
   table
     width: 100%
+  #add
+    input[type=text]
+      border: none
+      background: transparent
+      text:
+        align: right
+  td:last-child, th:last-child
+    text-align: center
+  tr:nth-child(even)
+    background-color: #ccddee
   th
     padding:
       bottom: 4px
@@ -161,7 +181,11 @@ footer
       weight: normal
     color: #5d6e7f
   td, th
-    padding:
+    text:
+      align: right
+    border: 0
+    margin: 0
+    padding: 0
       right: 12px
 
 nav#controls
@@ -170,6 +194,8 @@ nav#controls
   bottom: 0
   right: 0
   font-size: 12px
+  margin:
+    top: 12px
   
   .summary
     display: inline-block
@@ -184,16 +210,19 @@ nav#controls
       border: 0
       margin: 0
       padding: 0
+        left: 4px
+        right: 4px
       list-style: none
     
     .off
       //font-weight: bold
-      padding: 3px 4px
+      padding:
+        left: 4px
+        right: 4px
     
     .next a, .previous a
       //font-weight: bold
       //border: solid 1px #FFFFFF
     
     .active
-      //font-weight: bold
-      padding: 4px 6px
+      font-weight: bold

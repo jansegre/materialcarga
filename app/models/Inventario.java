@@ -75,6 +75,10 @@ public class Inventario extends Model {
 		this.valunit = valunit;
 	}
 	
+	public Secao getSecao() {
+		return usuario.secao;
+	}
+	
 	public Codigo addCodigo(String codigo) {
         Codigo newCodigo = new Codigo(this, codigo);
         this.codigos.add(newCodigo);

@@ -21,6 +21,7 @@ home.search=Pesquisar
 list.entrada=Entrada
 list.material=Material
 list.valunit=Valor Unitário
+list.modificado=Atualizado Em
 list.edit=Editar
 list.delete=Excluir
 list.transfer=Transferir
@@ -48,6 +49,8 @@ add.observacoes=Observações
 add.submit=Enviar
 add.error=Dados inválidos, corriga os erros.
 add.success=Material adicionado com sucesso.
+
+edit.title=Editar/Corrigir
 
 password.title=Mudar senha
 password.current=Senha atual

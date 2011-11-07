@@ -2,16 +2,26 @@
 #{set title:messages.get('home.title') /}
 <div id="list">
 <table>
-<tr><th>&{'list.entrada'}</th><th>&{'list.material'}</th><th>&{'list.valunit'}</th></tr>
+<tr>
+<th>&{'list.material'}</th>
+<th>&{'list.entrada'}</th>
+<th>&{'list.valunit'}</th>
+<th>&{'list.modificado'}</th>
+</tr>
+<tr id="add">
+#{form @addInventario()}
+<td><input type="text" name="material" id="material" required autofocus /></td>
+<td><input type="text" name="entrada" id="entrada" required /></td>
+<td><input type="text" name="valunit" id="valunit" required /></td>
+<td class="submit"><input class="submit" type="submit" id="submit" value="+" /></td>
+#{/form}
+</tr>
 #{paginate.list items:inventarios, as:'i'}
 <tr>
+<td><a href="@{edit(i.id)}">${i.material}</a></td>
 <td>${i.entrada}</td>
-<td>${i.material}</td>
 <td>${i.valunit}</td>
-<td><a href="@{edit(i.id)}">&{'list.edit'}</a></td>
-<td><a href="#@{unload(i.id)}">&{'list.unload'}</a></td>
-<td><a href="#@{transfer(i.id)}">&{'list.transfer'}</a></td>
-<td><a href="#@{delete(i.id)}">&{'list.delete'}</a></td>
+<td>${i.modificadoEm?.format("dd/MM/yyyy")}</td>
 </tr>
 #{/paginate.list}
 #{else}

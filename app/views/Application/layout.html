@@ -1,13 +1,13 @@
 #{extends 'layout.html' /}
 <div id="home">
 <div id="top">
-<p class="welcome">&{'home.welcome', user?.posto != null? user.posto + ' ' + user.name : user?.name}</p>
-<form id="search" action="#" method="get">
-<input id="q" type="search" autofocus />
-<input type="submit" value="&{'home.search'}" />
+<form id="search" action="#@{search()}" method="get">
+<input type="search" id="query" name="query" placeholder="&{'home.search'}" />
+*{<input type="submit" value="&{'home.search'}" />}*
 *{<a href="#">Busca Avançada</a>}*
 </form>
 <nav class="menu">
+<p class="welcome">&{'home.welcome', user?.posto != null? user.posto + ' ' + user.name : user?.name}</p>
 <a href="@{password()}">&{'home.password'}</a>
 <a id="logout" href="@{Secure.logout()}">&{'home.logout'}</a>
 </nav>

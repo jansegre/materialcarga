@@ -4,7 +4,7 @@
 #{form @editInventario()}
 <fieldset>
 <input type="hidden" name="inventario.id" value="${inventario.id}" />
-<legend>&{'add.title'}</legend>
+<legend>&{'edit.title'}</legend>
 <label for="material">&{'add.material'}</label>
 <input type="text" name="inventario.material" id="material" required autofocus value="${inventario.material}" />
 <small class="error">#{error 'inventario.material' /}</small>
@@ -69,6 +69,9 @@
 </fieldset>
 <input class="submit" type="submit" id="submit" value="&{'add.submit'}" />
 #{/form}
+<a href="#@{delete(inventario.id)}">&{'list.delete'}</a>
+<a href="#@{unload(inventario.id)}">&{'list.unload'}</a>
+<a href="#@{transfer(inventario.id)}">&{'list.transfer'}</a>
 </div>
 <script>
 //Adicionar codigo
