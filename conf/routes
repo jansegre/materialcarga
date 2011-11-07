@@ -8,6 +8,7 @@ GET     /about                                  Application.about
 GET     /search                                 Application.search
 GET     /password                               Application.password
 POST    /password                               Application.changePassword
+GET     /cat/{slug}                             Application.cat
 GET     /material/add                           Application.add
 POST    /material/add                           Application.addInventario
 POST    /material/{id}/label                    Application.addLabel

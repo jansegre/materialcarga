@@ -1,8 +1,8 @@
 #{extends 'layout.html' /}
 <div id="home">
 <div id="top">
-<form id="search" action="#@{search()}" method="get">
-<input type="search" id="query" name="query" placeholder="&{'home.search'}" />
+<form id="search" action="@{search()}" method="get">
+<input type="search" id="query" name="q" placeholder="&{'home.search'}" #{if search}value="${search}" #{/if} required />
 *{<input type="submit" value="&{'home.search'}" />}*
 *{<a href="#">Busca Avançada</a>}*
 </form>
@@ -24,10 +24,10 @@
 </div>
 <div id="cat">
 <ul class="cat">
-<li><a href="@{add()}"><button>&{'home.add'}</button></a></li>
+<li><form action="@{add()}"><button type="submit">&{'home.add'}</button></form></li>
 <li><a class="first" href="@{Application.index}">&{'home.home'}</a></li>
-#{list items:categorias, as:'cat'}
-<li><a href="/#${cat.slug}/1">${cat.name}</a></li>
+#{list items:categorias, as:'c'}
+<li><a href="@{cat(c.slug)}">${c.name}</a></li>
 #{/list}
 <li><a href="#">+</a></li>
 </ul>

@@ -6,8 +6,10 @@ import javax.persistence.*;
 
 import play.db.jpa.*;
 import play.data.validation.*;
+import play.modules.search.*;
 import play.mvc.Before;
 
+@Indexed
 @Entity
 public class Inventario extends Model {
 	
@@ -17,6 +19,7 @@ public class Inventario extends Model {
 	@Required
 	public Date modificadoEm;
 	
+	@Field
 	@Required
 	public String material;
 
@@ -44,6 +47,7 @@ public class Inventario extends Model {
 
 	public Integer NBa;
 
+	@Field
 	@Required
 	public Integer entrada;
 
@@ -51,11 +55,14 @@ public class Inventario extends Model {
 
 	public Integer existencia;
 
+	@Field
 	@Required
 	public Double valunit;
 
+	@Field
 	public Double valtotal;
 
+	@Field
 	@MaxSize(2000)
 	public String observacoes;
 
@@ -88,7 +95,7 @@ public class Inventario extends Model {
 
 	public static List<Inventario> findByCategoria(String slug) {
 		return Inventario
-				.find("select distinct i from Inventario i join i.categoria as c where c.slug = ?",
+				.find("select distinct i from Inventario i join i.categorias as c where c.slug = ?",
 						slug).fetch();
 	}
 

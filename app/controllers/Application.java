@@ -1,7 +1,8 @@
 package controllers;
 
 import play.*;
-import play.modules.paginate.ModelPaginator;
+import play.modules.paginate.*;
+import play.modules.search.*;
 import play.mvc.*;
 import play.data.validation.*;
 import play.i18n.Messages;
@@ -30,17 +31,29 @@ public class Application extends Controller {
 	public static void index() {
 		User user = Security.getConnectedUser();
 		List<Categoria> categorias = Categoria.findAll();
-		ModelPaginator<Inventario> inventarios = new ModelPaginator(Inventario.class).orderBy("modificadoEm desc");
+		ModelPaginator<Inventario> inventarios = new ModelPaginator(
+				Inventario.class).orderBy("modificadoEm desc");
+		inventarios.setPageSize(15);
 		render(user, categorias, inventarios);
 	}
-	
-	public static void inventarios(Long page) {
-		List<Inventario> inventarios = Inventario.findAll();
-		renderJSON(inventarios);
+
+	public static void cat(String slug) {
+		User user = Security.getConnectedUser();
+		List<Categoria> categorias = Categoria.findAll();
+		List<Inventario> invents = Inventario.findByCategoria(slug);
+		ValuePaginator inventarios = new ValuePaginator(invents);
+		inventarios.setPageSize(15);
+		render("@index", user, categorias, inventarios);
 	}
-	
-	public static void search(String query) {
-		// TODO
+
+	public static void search(String q) {
+		User user = Security.getConnectedUser();
+		List<Inventario> invents = Search.search(q, Inventario.class).reverse().fetch();
+		List<Categoria> categorias = Categoria.findAll();
+		ValuePaginator inventarios = new ValuePaginator(invents);
+		inventarios.setPageSize(15);
+		String search=q;
+		render("@index", user, categorias, inventarios, search);
 	}
 
 	public static void delete(Long id) {
@@ -62,13 +75,14 @@ public class Application extends Controller {
 		List<Categoria> categorias = Categoria.findAll();
 		Inventario inventario = Inventario.findById(id);
 		Simatex simatex = inventario.simatex;
-		Empresa empresa = simatex == null? null : simatex.empresa;
+		Empresa empresa = simatex == null ? null : simatex.empresa;
 		List<Codigo> codigos = inventario.codigos;
 		render(user, categorias, inventario, simatex, codigos, empresa);
 	}
-	
+
 	public static void editInventario(@Valid Inventario inventario) {
 		if (validation.hasErrors()) {
+			if(request.isAjax()) error(Messages.get("edit.error"));
 			params.flash(); // add http parameters to the flash scope
 			validation.keep(); // keep the errors for the next request
 			params.flash();
@@ -152,13 +166,4 @@ public class Application extends Controller {
 			}
 		}
 	}
-
-	// Página
-	public static void cat(String slug) {
-		User user = Security.getConnectedUser();
-		List<Categoria> categorias = Categoria.findAll();
-		List<Inventario> inventarios = Inventario.findByCategoria(slug);
-		render(user, categorias, inventarios);
-	}
-
 }

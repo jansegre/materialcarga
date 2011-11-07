@@ -7,29 +7,57 @@
 <th>&{'list.entrada'}</th>
 <th>&{'list.valunit'}</th>
 <th>&{'list.modificado'}</th>
+<th></th>
 </tr>
+#{if !search}
 <tr id="add">
-#{form @addInventario()}
-<td><input type="text" name="material" id="material" required autofocus /></td>
-<td><input type="text" name="entrada" id="entrada" required /></td>
-<td><input type="text" name="valunit" id="valunit" required /></td>
-<td class="submit"><input class="submit" type="submit" id="submit" value="+" /></td>
-#{/form}
+<td><input type="text" name="material" id="material" form="addform" required autofocus /></td>
+<td><input type="text" name="entrada" id="entrada" form="addform" required /></td>
+<td><input type="text" name="valunit" id="valunit" form="addform" required /></td>
+<td>#{form @addInventario(), id:'addform'}#{/form}</td>
+<td class="submit"><input class="submit" type="submit" id="submit" form="addform" value="+" /></td>
 </tr>
+#{/if}
 #{paginate.list items:inventarios, as:'i'}
-<tr>
-<td><a href="@{edit(i.id)}">${i.material}</a></td>
-<td>${i.entrada}</td>
-<td>${i.valunit}</td>
+<tr class="inventario">
+<td id="material-${i.id}" class="e">${i.material}</td>
+<td id="entrada-${i.id}" class="e">${i.entrada}</td>
+<td id="valunit-${i.id}" class="e">${i.valunit}</td>
 <td>${i.modificadoEm?.format("dd/MM/yyyy")}</td>
+<td><form action="@{edit(i.id)}"><button type="submit">»</button></form></td>
 </tr>
 #{/paginate.list}
 #{else}
-<tr><td>Empty list!</td></tr>
+<tr>
+<td>&{'list.empty'}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 #{/else}
 </table>
 </div>
 <nav id="controls">
 #{paginate.summary items:inventarios /}
 #{paginate.controls items:inventarios /}
-<nav>
+</nav>
+<script>
+$(".inventario .e").editInPlace({
+    bg_over: 'transparent',
+    callback: function(el, n, o) {
+        var m = /([a-z]+)-(\d+)/.exec(el), data = {}
+        data['inventario.id'] = m[2]
+        data['inventario.' + m[1]] = n
+        // Save result
+        $.ajax({
+            url: '@{editInventario()}',
+            type: 'POST',
+            data: data,
+            success: function() {$('#' + el).html(n)},
+            error: function() {$('#' + el).html(o)}
+        })
+        return true
+    }
+})
+</script>

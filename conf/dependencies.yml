@@ -6,3 +6,4 @@ require:
     - play -> crud
     - play -> secure
     - play -> paginate head
+    - play -> search 2.0

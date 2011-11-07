@@ -27,6 +27,7 @@ list.delete=Excluir
 list.transfer=Transferir
 list.unload=Descarregar
 list.summary=Mostrando %s até %s do total de %s materiais
+list.empty=Nenhum material foi encontrado.
 list.first=«« Primeiro
 list.prev=« Anterior
 list.next=Próximo »
