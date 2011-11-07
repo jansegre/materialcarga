@@ -1,0 +1,82 @@
+#{extends 'Application/layout.html' /}
+#{set title:messages.get('add.title') /}
+<div id="add" class="content">
+#{form @editInventario()}
+<fieldset>
+<input type="hidden" name="inventario.id" value="${inventario.id}" />
+<legend>&{'add.title'}</legend>
+<label for="material">&{'add.material'}</label>
+<input type="text" name="inventario.material" id="material" required autofocus value="${inventario.material}" />
+<small class="error">#{error 'inventario.material' /}</small>
+<br>
+<label for="entrada">&{'add.entrada'}</label>
+<input type="text" name="inventario.entrada" id="entrada" required value="${inventario.entrada}" />
+<small class="error">#{error 'inventario.entrada' /}</small>
+<br>
+<label for="saida">&{'add.saida'}</label>
+<input type="text" name="inventario.saida" id="saida" value="${inventario.saida}" />
+<small class="error">#{error 'inventario.saida' /}</small>
+<br>
+<label for="existencia">&{'add.existencia'}</label>
+<input type="text" name="inventario.existencia" id="existencia" value="${inventario.existencia}" />
+<small class="error">#{error 'inventario.existencia' /}</small>
+<br>
+<label for="valunit">&{'add.valunit'}</label>
+<input type="text" name="inventario.valunit" id="valunit" required value="${inventario.valunit}" />
+<small class="error">#{error 'inventario.valunit' /}</small>
+<br>
+<label for="valtotal">&{'add.valtotal'}</label>
+<input type="text" name="inventario.valtotal" id="valtotal" value="${inventario.valtotal}" />
+<small class="error">#{error 'inventario.valtotal' /}</small>
+<br>
+<label for="classe">&{'add.classe'}</label>
+<input type="text" name="inventario.classe" id="classe" value="${inventario.classe}" />
+<small class="error">#{error 'inventario.classe' /}</small>
+<br>
+*{TODO: categoria}*
+*{<label for="categoria">&{'add.categoria'}</label>
+<select multiple>
+#{list}
+<option></option>
+#{/list}
+</select>}*
+<small class="error">#{error 'inventario.categoria' /}</small>
+<br>
+<label for="contacontabil">&{'add.contacontabil'}</label>
+<input type="text" name="inventario.contacontabil" id="contacontabil" value="${inventario.contacontabil}" />
+<small class="error">#{error 'inventario.contacontabil' /}</small>
+<br>
+<label for="fichageral">&{'add.fichageral'}</label>
+<input type="text" name="inventario.fichageral" id="fichageral" value="${inventario.fichageral}" />
+<small class="error">#{error 'inventario.fichageral' /}</small>
+<br>
+<label for="incluidoem">&{'add.incluidoem'}</label>
+<input type="text" name="inventario.incluidoem" id="incluidoem" value="${inventario.incluidoEm?.format("dd/mm/yyyy")}" />
+<small class="error">#{error 'inventario.incluidoEm' /}</small>
+<br>
+<label for="nba">&{'add.nba'}</label>
+<input type="text" name="inventario.NBa" id="nba" value="${inventario.NBa}" />
+<small class="error">#{error 'inventario.NBa' /}</small>
+<br>
+<label for="ni">&{'add.ni'}</label>
+<input type="text" name="inventario.NI" id="ni" value="${inventario.NI}" />
+<small class="error">#{error 'inventario.NI' /}</small>
+<br>
+<label for="observacoes">&{'add.observacoes'}</label>
+<textarea name="observacoes" id="inventario.observacoes">${inventario.observacoes}</textarea>
+<small class="error">#{error 'inventario.observacoes' /}</small>
+<br>
+</fieldset>
+<input class="submit" type="submit" id="submit" value="&{'add.submit'}" />
+#{/form}
+</div>
+<script>
+//Adicionar codigo
+$('#addLabel').click(function() {
+	$.post('@{addLabel(inventario.id)}', {codigo: '123123'}, function(label) {
+		$('#labels').prepend(
+			'<li>' + label.id + ' ' + label.codigo + '</li>'
+		)
+	}, 'json')
+})
+</script>

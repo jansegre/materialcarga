@@ -4,6 +4,18 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /about                                  Application.about
+GET     /search                                 Application.search
+GET     /password                               Application.password
+POST    /password                               Application.changePassword
+GET     /material/add                           Application.add
+POST    /material/add                           Application.addInventario
+POST    /material/{id}/label                    Application.addLabel
+DELETE  /material/{id}/delete                   Application.delete
+GET     /material/{id}/unload                   Application.unload
+GET     /material/{id}/edit                     Application.edit
+POST    /material/edit                          Application.editInventario
+GET     /material/{id}/transfer                 Application.transfer
 
 
 # Adminstration
@@ -19,5 +31,5 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{action}/?                             Application.{action}
-*       /{controller}/{action}/?                {controller}.{action}
+# *       /{action}/?                             Application.{action}
+# *       /{controller}/{action}/?                {controller}.{action}

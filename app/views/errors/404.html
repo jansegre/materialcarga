@@ -1,7 +1,7 @@
 #{extends 'layout.html' /}
 #{set title: messages.get('error.404.title') /}
 <div id='error'>
-#{if false && play.mode.name() == 'DEV'}
+#{if play.mode.name() == 'DEV'}
 #{404 result /}
 #{/if}
 #{else}

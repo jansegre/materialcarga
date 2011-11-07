@@ -1,21 +1,53 @@
 # Textos em português para o site
 #
 
-# Textos para o principal
+# Textos para o aplicativo principal
 main.title=Controle de Material Carga
 main.ime=IME
 main.secao=SE/8
 main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
+main.admin=Painel de Administração
 
 home.title=Sistema de Controle de Material Carga
 home.welcome=Bem vindo, &{%s}
+home.logout=Sair
 home.password=Mudar senha
-home.new=Novo
-home.change=Corrigir
-home.remove=Remover
-home.transfer=Transferir
-home.unload=Descarregar
+home.add=Carregar
 home.print=Preparar para Impressão
+home.loading=Carregando
+home.home=Home
+home.search=Pesquisar
+
+list.entrada=Entrada
+list.material=Material
+list.valunit=Valor Unitário
+list.edit=Editar
+list.delete=Excluir
+list.transfer=Transferir
+list.unload=Descarregar
+list.summary=Mostrando %s até %s do total de %s materiais
+list.first=«« Primeiro
+list.prev=« Anterior
+list.next=Próximo »
+list.last=Último »»
+
+add.title=Novo material
+add.material=Material
+add.entrada=Entrada
+add.saida=Saída
+add.existencia=Existência
+add.valunit=Valor Unitário
+add.valtotal=Valor Total
+add.classe=Classe
+add.contacontabil=Conta Contábil
+add.fichageral=Ficha Geral
+add.incluidoem=Data de Inclusão
+add.nba=NBa
+add.ni=NI
+add.observacoes=Observações
+add.submit=Enviar
+add.error=Dados inválidos, corriga os erros.
+add.success=Material adicionado com sucesso.
 
 password.title=Mudar senha
 password.current=Senha atual
@@ -23,7 +55,7 @@ password.first=Nova senha
 password.second=Confirmação
 password.submit=Enviar
 password.change=Por favor, mude sua senha.
-password.error=Erro! As senhas devem estar iguais e com pelomenos 5 caractéres.
+password.error=Corrija os erros.
 password.success=Senha mudada com sucesso.
 
 error.403.title=Não Autorizado
@@ -34,7 +66,6 @@ error.500.title=Erro no Servidor
 error.500.message=Ocorreu um erro no servidor, o evento foi registrado com id <strong>&{%s}</strong>.
 
 # Textos para modelos
-
 estado.novo=Novo
 
 # Textos para o modulo secure

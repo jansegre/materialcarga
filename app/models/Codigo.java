@@ -23,6 +23,11 @@ public class Codigo extends Model {
 
 	public String estado;
 	
+	public Boolean presente;
+	
+	@ManyToOne
+	public Secao secao;
+	
 	public Codigo(Inventario inventario, String codigo) {
 		this.inventario = inventario;
 		this.codigo = codigo;

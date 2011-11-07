@@ -12,13 +12,13 @@ import play.mvc.Before;
 public class Inventario extends Model {
 	
 	@Required
-	public Boolean pronto;
-	
-	@Required
 	public Date criadoEm;
 	
 	@Required
 	public Date modificadoEm;
+	
+	@Required
+	public String material;
 
 	@ManyToOne
 	public Classe classe;
@@ -32,9 +32,6 @@ public class Inventario extends Model {
 
 	@ManyToOne
 	public Simatex simatex;
-
-	@ManyToOne
-	public Secao secao;
 	
 	@OneToMany(mappedBy="inventario", cascade=CascadeType.ALL)
 	public List<Codigo> codigos;
@@ -42,9 +39,6 @@ public class Inventario extends Model {
 	public Integer contacontabil;
 
 	public Integer fichageral;
-
-	@Required
-	public String material;
 	
 	public Date incluidoEm;
 
@@ -72,12 +66,13 @@ public class Inventario extends Model {
 		this.modificadoEm = new Date();
 	}
 	
-	public Inventario(User usuario) {
-		//TODO: implementar construtor
-		this.usuario = usuario;
-		this.pronto = false;
+	public Inventario(User usuario, String material, Integer entrada, Double valunit) {
 		this.criadoEm = new Date();
 		this.modificadoEm = new Date();
+		this.usuario = usuario;
+		this.material = material;
+		this.entrada = entrada;
+		this.valunit = valunit;
 	}
 	
 	public Codigo addCodigo(String codigo) {

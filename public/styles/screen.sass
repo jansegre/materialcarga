@@ -11,6 +11,12 @@ html, body
 .hide
   display: none
 
+a
+  color: #223355
+  text-decoration: none
+  &:hover
+    color: #556677
+
 header
   padding: 10px
   background-color: #ddeeff
@@ -21,6 +27,14 @@ header
     float: left
   h1, h2
     padding: 15px 0 0
+
+#top
+  .menu
+    display: inline-block
+    float: right
+    a
+      margin:
+        right: 10px
 
 .title
   text-align: center
@@ -40,13 +54,18 @@ header
 footer
   background-color: #eaecef
   border-top: solid #cacccf 1px
-  color: #8a8c8f
+  &, a, a:hover, a:visited
+    color: #8a8c8f
+  a
+    text-decoration: none
   font:
     family: Arial, sans-serif
     size: 13px
   height: 50px
   text-align: right
   padding: 10px
+  #admin
+    float: left
 
 .push
   height: 70px
@@ -105,7 +124,12 @@ footer
     margin: 20px auto 20px
     //float: left
     width: 152px
-    ul li
+    button
+      font:
+        size: 14px
+    li
+      margin:
+        bottom: 8px
       list-style: none
   #main
     background-color: #ddeeff
@@ -122,4 +146,54 @@ footer
   display: inline
   //height: 30px
   //float: left
-  //list-style: none  
+  //list-style: none
+
+#list
+  min-height: 300px
+  table
+    width: 100%
+  th
+    padding:
+      bottom: 4px
+    text:
+      align: left
+    font:
+      weight: normal
+    color: #5d6e7f
+  td, th
+    padding:
+      right: 12px
+
+nav#controls
+  text-align: right
+  position: relative
+  bottom: 0
+  right: 0
+  font-size: 12px
+  
+  .summary
+    display: inline-block
+  
+  .pagination
+    border: 0
+    margin: 0
+    padding: 0
+    display: inline-block
+    
+    li
+      border: 0
+      margin: 0
+      padding: 0
+      list-style: none
+    
+    .off
+      //font-weight: bold
+      padding: 3px 4px
+    
+    .next a, .previous a
+      //font-weight: bold
+      //border: solid 1px #FFFFFF
+    
+    .active
+      //font-weight: bold
+      padding: 4px 6px
