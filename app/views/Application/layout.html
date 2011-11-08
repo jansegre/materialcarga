@@ -2,7 +2,7 @@
 <div id="home">
 <div id="top">
 <form id="search" action="@{search()}" method="get">
-<input type="search" id="query" name="q" placeholder="&{'home.search'}" #{if search}value="${search}" #{/if} required />
+<input type="search" class="input" id="query" name="q" placeholder="&{'home.search'}" #{if search}value="${search}" #{/if} required />
 *{<input type="submit" value="&{'home.search'}" />}*
 *{<a href="#">Busca Avançada</a>}*
 </form>
@@ -12,13 +12,16 @@
 <a id="logout" href="@{Secure.logout()}">&{'home.logout'}</a>
 </nav>
 #{if flash.error}
-<small id="flash" class="error">&{flash.error}</small>
+<script>alert("&{flash.error}");</script>
+*{<small id="flash" class="error">&{flash.error}</small>}*
 #{/if}
 #{if flash.warn}
-<small id="flash" class="warn">&{flash.warn}</small>
+<script>alert("&{flash.warn}");</script>
+*{<small id="flash" class="warn">&{flash.warn}</small>}*
 #{/if}
 #{if flash.success}
-<small id="flash" class="successr">&{flash.success}</small>
+<script>alert("&{flash.success}");</script>
+*{<small id="flash" class="successr">&{flash.success}</small>}*
 #{/if}
 <small class="loading hide">&{'home.loading'}</small>
 </div>

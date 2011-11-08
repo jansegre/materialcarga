@@ -5,9 +5,9 @@
 <fieldset class="error">
 <legend>&{'secure.title'}</legend>
 <label for="username">&{'secure.username'}</label>
-<input type="text" name="username" id="username" value="${flash.username}" required autofocus />
+<input class="input" type="text" name="username" id="username" value="${flash.username}" required autofocus />
 <label for="password">&{'secure.password'}</label>
-<input type="password" name="password" id="password" value="" required />
+<input class="input" type="password" name="password" id="password" value="" required />
 *{<label for="remember">&{'secure.remember'}</label>
 <input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />}*
 #{if flash.error}

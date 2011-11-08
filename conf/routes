@@ -16,6 +16,7 @@ DELETE  /material/{id}/delete                   Application.delete
 GET     /material/{id}/unload                   Application.unload
 GET     /material/{id}/edit                     Application.edit
 POST    /material/edit                          Application.editInventario
+PUT     /material/edit                          Application.editInventario
 GET     /material/{id}/transfer                 Application.transfer
 
 

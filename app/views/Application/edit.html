@@ -69,6 +69,14 @@
 </fieldset>
 <input class="submit" type="submit" id="submit" value="&{'add.submit'}" />
 #{/form}
+<div>
+<ul>
+#{list items:inventario.codigos, as:'codigo'}
+<li>
+</li>
+#{/list}
+</ul>
+</div>
 <a href="#@{delete(inventario.id)}">&{'list.delete'}</a>
 <a href="#@{unload(inventario.id)}">&{'list.unload'}</a>
 <a href="#@{transfer(inventario.id)}">&{'list.transfer'}</a>

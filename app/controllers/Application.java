@@ -13,8 +13,10 @@ import models.*;
 
 @With(Secure.class)
 public class Application extends Controller {
+	
+	static final int pageSize = 13;
 
-	@Before(unless = { "changePassword" })
+	@Before(unless = {"password", "changePassword" })
 	static void checkchpw() {
 		User user = Security.getConnectedUser();
 		if (user != null && user.changePassword) {
@@ -33,7 +35,7 @@ public class Application extends Controller {
 		List<Categoria> categorias = Categoria.findAll();
 		ModelPaginator<Inventario> inventarios = new ModelPaginator(
 				Inventario.class).orderBy("modificadoEm desc");
-		inventarios.setPageSize(15);
+		inventarios.setPageSize(pageSize);
 		render(user, categorias, inventarios);
 	}
 
@@ -42,7 +44,7 @@ public class Application extends Controller {
 		List<Categoria> categorias = Categoria.findAll();
 		List<Inventario> invents = Inventario.findByCategoria(slug);
 		ValuePaginator inventarios = new ValuePaginator(invents);
-		inventarios.setPageSize(15);
+		inventarios.setPageSize(pageSize);
 		render("@index", user, categorias, inventarios);
 	}
 
@@ -51,7 +53,7 @@ public class Application extends Controller {
 		List<Inventario> invents = Search.search(q, Inventario.class).reverse().fetch();
 		List<Categoria> categorias = Categoria.findAll();
 		ValuePaginator inventarios = new ValuePaginator(invents);
-		inventarios.setPageSize(15);
+		inventarios.setPageSize(pageSize);
 		String search=q;
 		render("@index", user, categorias, inventarios, search);
 	}

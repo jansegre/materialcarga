@@ -29,19 +29,34 @@ header
   h1, h2
     padding: 15px 0 0
 
+input[type=text], input[type=search], textarea
+  border: solid 1px #cacccf
+    radius: 4px
+  padding: 4px
+  font:
+    size: 14px
+  &:focus
+    $color: #66aaff
+    box-shadow: 0px 0px 4px 2px $color
+    background: rgba($color, 0.3) !important
+
 #top
   padding:
-    left: 167px
-    right: 13px
+    left: 163px
+    right: 6px
   .welcome
     display: inline-block
     //width: 200px
   #search
     display: inline-block
     #query
-      width: 248px
+      width: 268px
   .menu
+    padding:
+      top: 4px
+      //bottom: 4px
     display: inline-block
+    max-height: 19px
     float: right
     a
       margin:
@@ -93,6 +108,8 @@ footer
   border-radius: 10px
   padding: 10px
   text-align: right
+  .input
+    width: 180px
   fieldset
     border: none
     border-radius: 10px
@@ -107,13 +124,15 @@ footer
       small
         color: #ff6633
   form
+    legend
+      padding: 4px
     label
       display: block
       float: left
-      width: 130px
-      //padding: 3px 5px
+      width: 108px
+      padding: 4px
       text-align: right
-      margin: 5px    
+      margin: 5px
     input
       margin: 5px
       //width: 200px
@@ -122,12 +141,14 @@ footer
       //  float: right
 
 #home
-  padding: 10px
+  padding: 6px
   width: 1000px
   margin: 0 auto 0
   #cat
     display: inline-block
-    margin: 20px auto 20px
+    margin:
+      top: 6px
+      //bottom: 20px
     //float: left
     width: 152px
     text:
@@ -147,10 +168,10 @@ footer
     border-radius: 10px
     display: inline-block
     vertical-align: top
-    width: 800px
-    min-height: 300px
-    margin: 10px
-    padding: 10px
+    width: 829px
+    min-height: 320px
+    margin: 6px
+    //padding: 10px
 
 #main nav ul li
   display: inline
@@ -159,34 +180,42 @@ footer
   //list-style: none
 
 #list
-  min-height: 300px
+  min-height: 376px
   table
+    border: none
+      collapse: collapse
     width: 100%
-  #add
-    input[type=text]
-      border: none
-      background: transparent
-      text:
-        align: right
-  td:last-child, th:last-child
-    text-align: center
-  tr:nth-child(even)
-    background-color: #ccddee
-  th
-    padding:
-      bottom: 4px
+  .inplace_field
+    //&, &:hover, &:active
+    border: 0
+    padding: 1px
+    width: 100%
+    max-width: 160px
+    background: transparent
+    font:
+      family: sans
+      size: 15px
     text:
-      align: left
+      align: right
+  tr:nth-child(even)
+    background-color: #cddeef
+  th
+    padding: 0
+      top: 4px
+      bottom: 4px
     font:
       weight: normal
     color: #5d6e7f
+  td
+    padding: 2px
   td, th
     text:
       align: right
-    border: 0
-    margin: 0
-    padding: 0
-      right: 12px
+    font:
+      family: sans
+      size: 15px
+    //border: 0
+    //margin: 0
 
 nav#controls
   text-align: right
