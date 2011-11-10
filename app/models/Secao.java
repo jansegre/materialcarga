@@ -9,6 +9,7 @@ import play.data.validation.*;
 
 @Entity
 public class Secao extends Model {
+	
 	@Required
 	public String nome;
 

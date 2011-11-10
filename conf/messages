@@ -2,7 +2,7 @@
 #
 
 # Textos para o aplicativo principal
-main.title=Controle de Material Carga
+main.title=Sistema de Controle de Material Carga
 main.ime=IME
 main.secao=SE/8
 main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
@@ -41,13 +41,14 @@ add.existencia=Existência
 add.valunit=Valor Unitário
 add.valtotal=Valor Total
 add.classe=Classe
+add.categoria=Categoria
 add.contacontabil=Conta Contábil
 add.fichageral=Ficha Geral
 add.incluidoem=Data de Inclusão
 add.nba=NBa
 add.ni=NI
 add.observacoes=Observações
-add.submit=Enviar
+add.submit=Salvar
 add.error=Dados inválidos, corriga os erros.
 add.success=Material adicionado com sucesso.
 

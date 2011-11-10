@@ -2,41 +2,38 @@
 #{set title:messages.get('home.title') /}
 <div id="list">
 <table>
-<tr>
-<th>&{'list.material'}</th>
-<th>&{'list.entrada'}</th>
-<th>&{'list.valunit'}</th>
-<th>&{'list.valtotal'}</th>
-<th></th>
-<th></th>
-</tr>
 #{if !search}
 <tr id="add">
-<td><input type="text" class="inplace_field" name="material" form="addform" required autofocus /></td>
-<td><input type="text" class="inplace_field" name="entrada" form="addform" required /></td>
-<td><input type="text" class="inplace_field" name="valunit" form="addform" required /></td>
-<td><input type="text" class="inplace_field" name="valtotal" form="addform" /></td>
-<td>#{form @addInventario(), id:'addform'}#{/form}</td>
-<td class="submit"><input class="submit" type="submit" id="submit" form="addform" value="+" /></td>
+<th class="submit">
+#{form @editInventario(), id:'addform'}
+#{if categoria}
+<input type="hidden" name="inventario.categoria.id" value="${categoria.id}"/>
+#{/if}
+<input type="hidden" name="inventario.usuario.id" value="${user.id}"/>
+<button type="submit">+</button>
+#{/form}
+</th>
+<th class="material"><input type="text" class="inplace_field" name="inventario.material" form="addform" placeholder="&{'list.material'}" required autofocus /></td>
+<th class="entrada"><input type="text" class="inplace_field" name="inventario.entrada" form="addform" placeholder="&{'list.entrada'}" pattern="[0-9]*" required /></td>
+<th class="valunit"><input type="text" class="inplace_field" name="inventario.valunit" form="addform" placeholder="&{'list.valunit'}" pattern="[0-9,.]*" required /></td>
+<th class="valtotal"><input type="text" class="inplace_field" name="inventario.valtotal" form="addform" placeholder="&{'list.valtotal'}" pattern="[0-9,.]*" /></td>
+<th class="date">${now.format("dd/MM/yyyy")}</td>
 </tr>
 #{/if}
 #{paginate.list items:inventarios, as:'i'}
 <tr class="inventario">
-<td id="material-${i.id}" class="e">${i.material}</td>
-<td id="entrada-${i.id}" class="e">${i.entrada}</td>
-<td id="valunit-${i.id}" class="e">${i.valunit}</td>
-<td id="valtotal-${i.id}" class="e">${i.valtotal}</td>
-<td>${i.modificadoEm?.format("dd/MM/yyyy")}</td>
-<td><form action="@{edit(i.id)}"><button type="submit">&gt;</button></form></td>
+<td class="submit"><form action="@{edit(i.id)}"><button type="submit">&gt;</button></form></td>
+<td id="material-${i.id}" class="edit material">${i.material}</td>
+<td id="entrada-${i.id}" class="edit entrada">${i.entrada}</td>
+<td id="valunit-${i.id}" class="edit valunit">${i.valunit}</td>
+<td id="valtotal-${i.id}" class="edit valtotal">${i.valtotal}</td>
+<td class="date">${i.criadoEm?.format("dd/MM/yyyy")}</td>
 </tr>
 #{/paginate.list}
 #{else}
 <tr>
-<td>&{'list.empty'}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td colspan="3">&{'list.empty'}</td>
+<td colspan="3"></td>
 </tr>
 #{/else}
 </table>
@@ -46,7 +43,7 @@
 #{paginate.controls items:inventarios /}
 </nav>
 <script>
-$(".inventario .e").editInPlace({
+$(".inventario .edit").editInPlace({
     bg_over: 'transparent',
     default_text: '',
     callback: function(el, n, o) {

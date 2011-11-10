@@ -13,10 +13,10 @@ import models.*;
 
 @With(Secure.class)
 public class Application extends Controller {
-	
+
 	static final int pageSize = 13;
 
-	@Before(unless = {"password", "changePassword" })
+	@Before(unless = { "password", "changePassword" })
 	static void checkchpw() {
 		User user = Security.getConnectedUser();
 		if (user != null && user.changePassword) {
@@ -31,30 +31,34 @@ public class Application extends Controller {
 	}
 
 	public static void index() {
+		Date now = new Date();
 		User user = Security.getConnectedUser();
 		List<Categoria> categorias = Categoria.findAll();
 		ModelPaginator<Inventario> inventarios = new ModelPaginator(
-				Inventario.class).orderBy("modificadoEm desc");
+				Inventario.class).orderBy("criadoEm desc");
 		inventarios.setPageSize(pageSize);
-		render(user, categorias, inventarios);
+		render(now, user, categorias, inventarios);
 	}
 
 	public static void cat(String slug) {
+		Date now = new Date();
 		User user = Security.getConnectedUser();
 		List<Categoria> categorias = Categoria.findAll();
 		List<Inventario> invents = Inventario.findByCategoria(slug);
 		ValuePaginator inventarios = new ValuePaginator(invents);
 		inventarios.setPageSize(pageSize);
-		render("@index", user, categorias, inventarios);
+		Categoria categoria = Categoria.findBySlug(slug);
+		render("@index", now, user, categorias, inventarios, categoria);
 	}
 
 	public static void search(String q) {
 		User user = Security.getConnectedUser();
-		List<Inventario> invents = Search.search(q, Inventario.class).reverse().fetch();
+		List<Inventario> invents = Search.search(q, Inventario.class).reverse()
+				.fetch();
 		List<Categoria> categorias = Categoria.findAll();
 		ValuePaginator inventarios = new ValuePaginator(invents);
 		inventarios.setPageSize(pageSize);
-		String search=q;
+		String search = q;
 		render("@index", user, categorias, inventarios, search);
 	}
 
@@ -76,66 +80,48 @@ public class Application extends Controller {
 		User user = Security.getConnectedUser();
 		List<Categoria> categorias = Categoria.findAll();
 		Inventario inventario = Inventario.findById(id);
-		Simatex simatex = inventario.simatex;
-		Empresa empresa = simatex == null ? null : simatex.empresa;
-		List<Codigo> codigos = inventario.codigos;
-		render(user, categorias, inventario, simatex, codigos, empresa);
+		render(user, categorias, inventario);
 	}
 
 	public static void editInventario(@Valid Inventario inventario) {
+		User user = Security.getConnectedUser();
+		List<Categoria> categorias = Categoria.findAll();
 		if (validation.hasErrors()) {
-			if(request.isAjax()) error(Messages.get("edit.error"));
-			params.flash(); // add http parameters to the flash scope
-			validation.keep(); // keep the errors for the next request
-			params.flash();
-			flash.error(Messages.get("add.error"));
-			edit(inventario.id);
+			if (request.isAjax())
+				error(Messages.get("edit.error"));
+			// params.flash(); // add http parameters to the flash scope
+			// flash.error(Messages.get("add.error"));
+			String error = Messages.get("add.error");
+			render("@edit", user, categorias, inventario, error);
 		} else {
+			if (inventario.classe != null)
+				inventario.classe.save();
+			if (inventario.simatex != null) {
+				if (inventario.simatex.empresa != null)
+					inventario.simatex.empresa.save();
+				inventario.simatex.save();
+			}
 			inventario.save();
-			edit(inventario.id);
+			params.flash();
+			flash.success(Messages.get("add.success"));
+			if (inventario.categoria != null) {
+				cat(inventario.categoria.slug);
+			} else {
+				index();
+			}
 		}
 	}
 
 	public static void add() {
 		User user = Security.getConnectedUser();
 		List<Categoria> categorias = Categoria.findAll();
-		render(user, categorias);
+		render("@edit", user, categorias);
 	}
 
 	public static void addLabel(Long id, String codigo) {
 		Inventario inventario = Inventario.findById(id);
 		Codigo label = inventario.addCodigo(codigo);
 		renderJSON(label);
-	}
-
-	public static void addInventario(@Required String material,
-			@Required Integer entrada, @Required Double valunit,
-			Integer contacontabil, Integer fichageral, Date incluidoem,
-			Integer nba, Integer saida, Integer existencia, Double valtotal,
-			String observacoes, String ni) {
-		if (validation.hasErrors()) {
-			validation.keep();
-			params.flash();
-			flash.error(Messages.get("add.error"));
-			add();
-		} else {
-			User user = Security.getConnectedUser();
-			Inventario inventario = new Inventario(user, material, entrada,
-					valunit);
-			inventario.contacontabil = contacontabil;
-			inventario.fichageral = fichageral;
-			inventario.incluidoEm = incluidoem;
-			inventario.NBa = nba;
-			inventario.saida = saida;
-			inventario.existencia = existencia;
-			inventario.valtotal = valtotal;
-			inventario.observacoes = observacoes;
-			inventario.NI = ni;
-			inventario.save();
-			params.flash();
-			flash.success(Messages.get("add.success"));
-			index();
-		}
 	}
 
 	public static void password() {

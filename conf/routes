@@ -9,15 +9,14 @@ GET     /search                                 Application.search
 GET     /password                               Application.password
 POST    /password                               Application.changePassword
 GET     /cat/{slug}                             Application.cat
-GET     /material/add                           Application.add
-POST    /material/add                           Application.addInventario
-POST    /material/{id}/label                    Application.addLabel
-DELETE  /material/{id}/delete                   Application.delete
-GET     /material/{id}/unload                   Application.unload
-GET     /material/{id}/edit                     Application.edit
-POST    /material/edit                          Application.editInventario
-PUT     /material/edit                          Application.editInventario
-GET     /material/{id}/transfer                 Application.transfer
+POST    /material/label/{id}                    Application.addLabel
+DELETE  /material/delete/{id}                   Application.delete
+GET     /material/unload/{id}                   Application.unload
+GET     /material/save                          Application.add
+GET     /material/{id}                          Application.edit
+POST    /material/save                          Application.editInventario
+PUT     /material/save                          Application.editInventario
+GET     /material/transfer/{id}                 Application.transfer
 
 
 # Adminstration

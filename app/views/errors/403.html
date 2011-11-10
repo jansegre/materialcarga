@@ -1,6 +1,6 @@
 #{extends 'layout.html' /}
 #{set title: messages.get('error.403.title') /}
-<div id='error'>
+<div class="main container">
 #{if play.mode.name() == 'DEV'}
 #{403 result /}
 #{/if}

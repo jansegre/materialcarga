@@ -9,7 +9,7 @@ import play.data.validation.*;
 
 @Entity
 public class Classe extends Model {
-	@Required
+
 	public String nome;
 
 	@Required

@@ -24,7 +24,9 @@ public class User extends Model {
 	public Boolean changePassword;
 	
 	public void setPasswordHash(String password) {
-		this.passwordHash = hash(password);
+		if(!this.passwordHash.equals(password)) {
+			this.passwordHash = hash(password);
+		}
 	}
 
 	@ManyToOne

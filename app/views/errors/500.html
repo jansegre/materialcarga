@@ -1,6 +1,6 @@
 #{extends 'layout.html' /}
 #{set title: messages.get('error.500.title') /}
-<div id='error'>
+<div class="main container">
 #{if play.mode.name() == 'DEV'}
 #{500 exception /}
 #{/if}

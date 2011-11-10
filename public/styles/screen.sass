@@ -1,56 +1,205 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700)
+$sans: 'Ubuntu', sans-serif
+
+$c1: #66aaff
+$c1dm: #445588
+$c1d: #223355
+$c1dd: #001133
+$c1lm: #bdcedf
+$c1l: #ddeeff
+$c1ll: #fcfdff
+
+$c2: #8a8c8f
+$c2d: #8a8c8f
+$c2l: #eaecef
+$c2lm: #cddeef
+$c2ll: #cacccf
+
+$ce: #ff6633
+
+$bradius: 6px
+$sradius: 3px
+$width: 1000px
+$footerh: 60px
+$headerh: 144px
+$gap: 12px
+$cat: 150px
+$tfs: 16px
+$tgap: 3px
+
 *
   margin: 0
-  
+
 html, body
-  background-color: #fcfdff
-  min-width: 1000px
   height: 100%
+  min-width: 1000px
+
+body
+  background-color: $c1ll
+  font:
+    family: $sans
 
 .hide
   display: none
 
 h1, h2, h3, h4
-  color: #001133
+  color: $c1dd
 
 a
-  color: #223355
+  color: $c1d
   text-decoration: none
   &:hover
-    color: #556677
+    color: $c1dd
+    text:
+      shadow: 0px 0px 1px rgba($c1d, 0.6)
+
+input, button, textarea, select
+  outline: none
+  font:
+    family: $sans
+    size: 14px
+  border: solid 1px $c2ll
+    radius: $sradius
+  padding: 2px
+    left: 6px
+    right: 6px
+  background: rgba($c1ll, 0.5)
+  &:hover, &:active, &:focus
+    border:
+      color: $c1 !important
+  //font:
+  //  size: 14px
+input[type=text], input[type=search], input[type=password], input[type=number], textarea, select
+  padding: 4px
+    left: 2px
+    right: 2px
+  &:focus
+    border:
+      color: $c1 !important
+    box-shadow: 0px 0px 4px 2px $c1
+    background: rgba($c1, 0.2) !important
+  width: 200px
+
+=placeholder
+  color: $c2
+input:-moz-placeholder
+  +placeholder
+input::-webkit-input-placeholder
+  +placeholder
+
+fieldset
+  border: none
+  text-align: left
+  small
+    display: block
+    width: 100%
+    text-align: center
+  &.error
+    small
+      color: $ce
+
+legend
+  padding: 4px
+
+label
+  display: block
+  clear: both
+  float: left
+  padding: 4px
+  text-align: right
 
 header
-  padding: 10px
-  background-color: #ddeeff
-  border-bottom: solid #bdcedf 1px
-  height: 120px
+  padding:
+    top: $gap
+    bottom: $gap
+  height: $headerh - 2 * $gap
+  background-color: $c1l
+  border-bottom: solid $c1lm 1px
   img
-    display: inline
+    //display: inline
     float: left
   h1, h2
-    padding: 15px 0 0
+    padding:
+      top: 16px
 
-input[type=text], input[type=search], textarea
-  border: solid 1px #cacccf
-    radius: 4px
-  padding: 4px
+.title
+  text-align: center
+  margin: 0 92px 0
+
+.clear
+  clear: both
+
+.container
+  margin:
+    right: auto
+    left: auto
+    top: 0 
+    bottom: 0
+  width: $width
+
+.main
+  padding:
+    top: $gap
+    bottom: $gap
+    right: 0
+    left: 0
+
+.wrapper
+  height: auto !important
+  min-height: 100%
+  margin: 0 auto (-$footerh - 1px)
+
+.push
+  height: $footerh
+
+footer
+  padding:
+    top: $gap
+    bottom: $gap
+  height: $footerh - 2 * $gap
+  background-color: $c2l
+  border-top: solid $c2ll 1px
+  text-align: right
   font:
     size: 14px
-  &:focus
-    $color: #66aaff
-    box-shadow: 0px 0px 4px 2px $color
-    background: rgba($color, 0.3) !important
+  &, a, a:visited
+    color: $c2d
+  a:hover
+    color: $c2
+  a
+    text-decoration: none
+  #admin
+    float: left
+
+#login
+  background-color: $c1l
+  border: solid $c1lm 1px
+  width: 400px
+  //height:250px
+  margin: 50px auto 50px
+  border-radius: $bradius
+  padding: 10px
+  text-align: right
+  input[type=text], input[type=password]
+    width: 180px
+    margin: 5px
+  label:
+    margin: 5px
+    width: 108px
 
 #top
   padding:
-    left: 163px
-    right: 6px
+    left: $cat + $gap + 1px
+    //right: 6px
+  margin:
+    bottom: $gap
   .welcome
     display: inline-block
     //width: 200px
   #search
     display: inline-block
-    #query
-      width: 268px
+    input[type=search]
+      width: 288px
   .menu
     padding:
       top: 4px
@@ -62,196 +211,99 @@ input[type=text], input[type=search], textarea
       margin:
         left: 10px
 
-.title
-  text-align: center
-  margin: 0 92px 0
-
-.wrapper
-  height: auto !important
-  min-height: 100%
-  margin: 0 auto -71px
-
-.container
-  //background-color: #eeeeff
-  height: 120px
-  margin: 0 auto 0
-  width: 1000px
-
-footer
-  background-color: #eaecef
-  border-top: solid #cacccf 1px
-  &, a, a:hover, a:visited
-    color: #8a8c8f
-  a
-    text-decoration: none
-  font:
-    family: Arial, sans-serif
-    size: 13px
-  height: 50px
-  text-align: right
-  padding: 10px
-  #admin
-    float: left
-
-.push
-  height: 70px
-
-#login, #home
-  font-family: Tahoma, sans-serif
-
-#login
-  background-color: #ddeeff
-  border: solid #bdcedf 1px
-  width: 400px
-  //height:250px
-  margin: 50px auto 50px
-  border-radius: 10px
-  padding: 10px
-  text-align: right
-  .input
-    width: 180px
-  fieldset
-    border: none
-    border-radius: 10px
-    text-align: left
-    small
-      display: block
-      width: 100%
-      text-align: center
-    &.error
-      //border:solid #ff6633 1px
-      border-radius: 10px
-      small
-        color: #ff6633
-  form
-    legend
-      padding: 4px
-    label
-      display: block
-      float: left
-      width: 108px
-      padding: 4px
-      text-align: right
-      margin: 5px
-    input
-      margin: 5px
-      //width: 200px
-      //submit
-      //  display: block
-      //  float: right
+#cat
+  display: inline-block
+  width: $cat
+  text:
+    align: right
+  margin:
+    top: $tgap + 1px
+  button
+    font:
+      size: 14px
+  li
+    margin:
+      bottom: 8px
+    list-style: none
 
 #home
-  padding: 6px
-  width: 1000px
-  margin: 0 auto 0
-  #cat
-    display: inline-block
-    margin:
-      top: 6px
-      //bottom: 20px
-    //float: left
-    width: 152px
+  display: inline-block
+  background-color: $c1l
+  border: solid $c1lm 1px
+    radius: $bradius
+  vertical-align: top
+  width: $width - $cat - $gap - 2px
+  min-height: 300px
+  margin:
+    left: $gap
+  nav
+    ul
+      padding: 0
+      display: inline-block
+      float: right
+    li
+      list-style: none
+      display: table-cell
+      padding:
+        left: $gap
+    &#controls
+      padding: 4px
+      .active
+        font:
+          weight: bold
+      .off a
+        color: $c2
+
+#save
+  label
+    width: 140px
+  input#valunit, input#valtotal
     text:
       align: right
-    .cat
-      padding: 0
-    button
-      font:
-        size: 14px
-    li
-      margin:
-        bottom: 8px
-      list-style: none
-  #main
-    background-color: #ddeeff
-    border: solid #bdcedf 1px
-    border-radius: 10px
-    display: inline-block
-    vertical-align: top
-    width: 829px
-    min-height: 320px
-    margin: 6px
-    //padding: 10px
-
-#main nav ul li
-  display: inline
-  //height: 30px
-  //float: left
-  //list-style: none
 
 #list
-  min-height: 376px
+  min-height: 14 * ($tfs + 4 * $tgap)
   table
     border: none
       collapse: collapse
+    width: 100%
+  form
+    float: right
     width: 100%
   .inplace_field
     //&, &:hover, &:active
     border: 0
     padding: 1px
     width: 100%
-    max-width: 160px
     background: transparent
     font:
-      family: sans
-      size: 15px
+      size: $tfs
     text:
       align: right
+    line:
+      height: $tfs
   tr:nth-child(even)
-    background-color: #cddeef
-  th
-    padding: 0
-      top: 4px
-      bottom: 4px
-    font:
-      weight: normal
-    color: #5d6e7f
-  td
-    padding: 2px
+    background-color: $c2lm
   td, th
+    padding: $tgap
+    height: $tfs + 2 * $tgap
+    line:
+      height: $tfs
     text:
       align: right
     font:
-      family: sans
-      size: 15px
-    //border: 0
-    //margin: 0
-
-nav#controls
-  text-align: right
-  position: relative
-  bottom: 0
-  right: 0
-  font-size: 12px
-  margin:
-    top: 12px
-  
-  .summary
-    display: inline-block
-  
-  .pagination
-    border: 0
-    margin: 0
-    padding: 0
-    display: inline-block
-    
-    li
-      border: 0
-      margin: 0
-      padding: 0
-        left: 4px
-        right: 4px
-      list-style: none
-    
-    .off
-      //font-weight: bold
-      padding:
-        left: 4px
-        right: 4px
-    
-    .next a, .previous a
-      //font-weight: bold
-      //border: solid 1px #FFFFFF
-    
-    .active
-      font-weight: bold
+      size: $tfs
+      weight: normal
+  th.material, td.material
+    &, input
+      text:
+        align: left
+  th.entrada, th.valunit, th.valtotal
+    width: 120px
+  th.date
+    width: 90px
+  th.submit, td.submit
+    &, button
+      width: 25px
+      height: 100%
+      vertical-align: middle

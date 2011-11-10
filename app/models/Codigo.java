@@ -10,6 +10,7 @@ import play.i18n.Messages;
 
 @Entity
 public class Codigo extends Model {
+	
 	@Required
 	public String codigo;
 
