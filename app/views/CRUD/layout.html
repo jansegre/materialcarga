@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="${lang}">
-<head>
-<title>#{get 'title' /}</title>
-<meta charset="${_response_encoding}" />
-<link rel="stylesheet" media="screen" href="@{'/public/styles/admin.scss'}" />
-</head>
-<body id="crud">
-<div id="crudHeader">
-<h1><a href="@{CRUD.index()}">&{'crud.title'}</a></h1>
-<span><a href="@{Application.index()}">&{'home.home'}</a></span>
-<span><a href="@{Secure.logout()}">&{'crud.logout'}</a></span>
-</div>
-#{if request.actionMethod != 'index'}
+#{extends 'layout.html' /}
+#{set 'moreStyles'}
+<link rel="stylesheet" media="screen" href="@{'/public/styles/admin.sass'}" />
+#{/set}
+<div id="crud">
 <div id="crudBreadcrumb">
+<div class="container">
+<span>
+#{if request.actionMethod != 'index'}
 #{crud.navigation /}
-</div>
 #{/if}
+#{else}
+<ul><li><a href="@{CRUD.index()}">&{'crud.home'}</a></li></ul>
+#{/else}
+</span>
+<span class="right"><a href="@{Secure.logout()}">&{'crud.logout'}</a></span>
+</div>
+</div>
 #{if flash.success}
 <div class="crudFlash flashSuccess">
 ${flash.success}
@@ -26,8 +26,7 @@ ${flash.success}
 ${error ?: flash.error}
 </div>
 #{/if}
-<div id="crudContent">
+<div id="crudContent" class="container">
 #{doLayout /}
 </div>
-</body>
-</html>
+</div>

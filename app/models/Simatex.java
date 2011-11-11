@@ -10,10 +10,10 @@ import play.data.validation.*;
 @Entity
 public class Simatex extends Model {
 
-	public String codom;
-
 	@Required
 	public String nome;
+	
+	public String codom;
 
 	public String nrref;
 
@@ -34,9 +34,6 @@ public class Simatex extends Model {
 	public String dadoscomp;
 
 	public String caractec;
-
-	@ManyToOne
-	public Empresa empresa;
 
 	public String toString() {
 		return nome;

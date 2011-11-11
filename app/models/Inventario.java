@@ -1,8 +1,7 @@
 package models;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 import java.text.*;
 
 import javax.persistence.*;
@@ -47,6 +46,9 @@ public class Inventario extends Model {
 
 	@ManyToOne
 	public Simatex simatex;
+	
+	@ManyToOne
+	public Empresa empresa;
 
 	@OneToMany(mappedBy = "inventario", cascade = CascadeType.ALL)
 	public List<Codigo> codigos;
@@ -65,55 +67,82 @@ public class Inventario extends Model {
 
 	public Integer saida;
 
+	public void autoSetSaida() {
+		if (this.saida == null)
+			this.saida = 0;
+	}
+
 	public Integer existencia;
+
+	public void autoSetExistencia() {
+		if (this.existencia == null)
+			this.existencia = this.entrada - this.saida;
+	}
 
 	@Field
 	@Required
-	public Double valunit;
+	public Long valunit;
 
 	public void setValunit(String valunit) {
-		this.valunit = currencyToDouble(valunit);
+		this.valunit = currencyToLong(valunit);
 	}
 
 	public String getValunit() {
-		return doubleToCurrency(valunit);
+		return valunit == null ? null : longToCurrency(valunit);
 	}
 
 	@Field
-	public Double valtotal;
+	public Long valtotal;
 
 	public void setValtotal(String valtotal) {
-		this.valtotal = currencyToDouble(valtotal);
+		this.valtotal = currencyToLong(valtotal);
+	}
+
+	public void autoSetValtotal() {
+		if (getValtotal() == null || getValtotal().equals(""))
+			setValtotal(longToCurrency(this.entrada
+					* currencyToLong(getValunit())));
+		else
+			System.out.println("FAIL![" + getValtotal() + "]");
 	}
 
 	public String getValtotal() {
-		return doubleToCurrency(valtotal);
+		return longToCurrency(valtotal);
 	}
 
-	static Double currencyToDouble(String currency) {
-		if (currency == null)
+	static Long currencyToLong(String currency) {
+		if(currency == null || currency.equals(""))
 			return null;
 		try {
-			return Double.parseDouble(currencyToBigDecimalFormat(currency));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return Long.parseLong(currencyToDecimalFormat(currency));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
-	static String doubleToCurrency(Double number) {
+	static String longToCurrency(Long number) {
 		if (number == null)
 			return null;
-		DecimalFormat real = new DecimalFormat("###,###,###,###.00");
-		String currency = real.format(number);
-		currency = currency.replace(',', ';');
-		currency = currency.replace('.', ',');
-		currency = currency.replace(';', '.');
+		Locale.setDefault(Locale.GERMAN);
+		DecimalFormat real = new DecimalFormat("###,###,###,##0.00");
+		String currency = real.format(number / 100.0);
 		return currency;
+	}
+
+	static String currencyToDecimalFormat(String currency) {
+		currency = currency.replace(".", ",");
+		int l = currency.length();
+		if (l >= 3) {
+			if (currency.charAt(l - 3) == ',')
+				return currency.replace(",", "");
+			else if (currency.charAt(l - 2) == ',')
+				return currency.replace(",", "") + "0";
+			else
+				return currency.replace(",", "") + "00";
+		} else {
+			return currency.replace(",", "") + "00";
+		}
 	}
 
 	static String currencyToBigDecimalFormat(String currency) throws Exception {
@@ -136,8 +165,8 @@ public class Inventario extends Model {
 			currency = new String(chars);
 		}
 
-		// Remove all commas
-		return currency.replaceAll(",", "");
+		// Remove all commas and dots
+		return currency.replaceAll(",", "").replace(".", "");
 	}
 
 	static boolean doesMatch(String s, String pattern) {
@@ -155,6 +184,8 @@ public class Inventario extends Model {
 	public String observacoes;
 
 	public String NI;
+
+	public String destino;
 
 	public Secao getSecao() {
 		return usuario.secao;

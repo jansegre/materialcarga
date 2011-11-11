@@ -1,0 +1,84 @@
+#{extends './layout.html' /}
+#{set title:messages.get('home.title') /}
+<div id="list">
+<table>
+<tr id="add">
+<th class="submit">
+#{form @addInventario(), id:'addform'}
+#{if categoria}
+<input type="hidden" name="inventario.categoria.id" value="${categoria.id}"/>
+#{/if}
+<input type="hidden" name="inventario.usuario.id" value="${user.id}"/>
+<input type="hidden" name="inventario.saida" value="0"/>
+<button type="submit">+</button>
+#{/form}
+</th>
+<th class="material"><input type="text" class="inplace_field" name="inventario.material" form="addform" placeholder="&{'list.material'}" required autofocus /></td>
+<th class="entrada"><input type="text" class="inplace_field" name="inventario.entrada" form="addform" placeholder="&{'list.entrada'}" pattern="[0-9]*" required /></td>
+<th class="valunit"><input type="text" class="inplace_field" name="inventario.valunit" form="addform" placeholder="&{'list.valunit'}" pattern="[0-9,.]*" required /></td>
+<th class="valtotal"><input type="text" class="inplace_field" name="inventario.valtotal" form="addform" placeholder="&{'list.valtotal'}" pattern="[0-9,.]*" /></td>
+<th class="date">${now.format("dd/MM/yy")}</td>
+</tr>
+#{paginate.list items:inventarios, as:'i'}
+<tr class="inventario">
+<td class="submit"><form action="@{show(i.id)}"><button type="submit">&gt;</button></form></td>
+<td class="material"><span id="material-${i.id}" class="tedit">${i.material}</span></td>
+<td class="entrada"><span id="entrada-${i.id}" class="edit">${i.entrada}</span></td>
+<td class="valunit"><span id="valunit-${i.id}" class="edit">${i.valunit}</span></td>
+<td class="valtotal"><span id="valtotal-${i.id}" class="edit">${i.valtotal}</span></td>
+<td class="date">${i.criadoEm?.format("dd/MM/yy")}</td>
+</tr>
+#{/paginate.list}
+#{else}
+<tr>
+<td colspan="3">&{'list.empty'}</td>
+<td colspan="3"></td>
+</tr>
+#{/else}
+</table>
+</div>
+<nav id="controls">
+#{paginate.summary items:inventarios /}
+#{paginate.controls items:inventarios /}
+</nav>
+<script>
+$(".inventario .edit").editInPlace({
+    bg_over: 'transparent',
+    default_text: '',
+    callback: function(el, n, o) {
+        var m = /([a-z]+)-(\d+)/.exec(el), data = {}
+        data['inventario.id'] = m[2]
+        data['inventario.' + m[1]] = n
+        // Save result
+        $.ajax({
+        	*{GAMBIARRA:}*
+            url: '@{addInventario}/' + m[2],
+            type: 'POST',
+            data: data,
+            success: function() {$('#' + el).html(n)},
+            error: function() {$('#' + el).html(o)}
+        })
+        return true
+    }
+})
+$(".inventario .tedit").editInPlace({
+    bg_over: 'transparent',
+    default_text: '',
+    field_type: 'textarea',
+    callback: function(el, n, o) {
+        var m = /([a-z]+)-(\d+)/.exec(el), data = {}
+        data['inventario.id'] = m[2]
+        data['inventario.' + m[1]] = n
+        // Save result
+        $.ajax({
+            *{GAMBIARRA:}*
+            url: '@{addInventario}/' + m[2],
+            type: 'POST',
+            data: data,
+            success: function() {$('#' + el).html(n)},
+            error: function() {$('#' + el).html(o)}
+        })
+        return true
+    }
+})
+</script>

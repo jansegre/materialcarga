@@ -16,6 +16,11 @@ public class Categoria extends Model {
 	@Required
 	public String slug;
 	
+	public Categoria(String name) {
+		this.name = name;
+		this.slug = name.toLowerCase().replace(" ", "");
+	}
+	
 	public static Categoria findBySlug(String slug) {
 		return find("slug", slug).first();
 	}

@@ -19,7 +19,7 @@ public class Security extends Secure.Security {
 	}
 
 	static void onDisconnected() {
-		Application.index();
+		Home.index();
 	}
 
 	static void onAuthenticated() {
@@ -29,7 +29,7 @@ public class Security extends Secure.Security {
 			break;
 		case USER:
 		default:
-			Application.index();
+			Home.index();
 			break;
 		}
 	}

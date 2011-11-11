@@ -1,0 +1,30 @@
+#{extends 'layout.html' /}
+<div class="main container">
+<div id="top">
+<form id="search" action="@{search}" method="get">
+<input type="search" name="q" placeholder="&{'home.search'}" value="${search}" />
+</form>
+<nav class="menu">
+<p class="welcome">&{'home.welcome', user?.posto != null? user.posto + ' ' + user.name : user?.name}</p>
+<a href="@{password}">&{'home.password'}</a>
+<a id="logout" href="@{Secure.logout}">&{'home.logout'}</a>
+</nav>
+<small class="loading hide">&{'home.loading'}</small>
+</div>
+<div id="cat">
+<ul class="cat">
+<li><form action="@{add}"><button type="submit">&{'home.add'}</button></form></li>
+<li><a class="first" href="@{index}">&{'home.home'}</a></li>
+#{list items:categorias, as:'c'}
+<li><a href="@{showCategoria(c.slug)}">${c.name}</a></li>
+#{/list}
+<li>
+#{form @newCategoria(), id:"addcat"}
+<input type="text" name="cat" required /><button type="submit">+</button>
+#{/form}
+</li>
+</ul>
+</div><div id="home">
+#{doLayout /}
+</div>
+</div>

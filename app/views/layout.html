@@ -14,7 +14,7 @@
 <div class="wrapper">
 <header>
 <div class="container">
-<a href="@{Application.index}"><img src="@{'/public/images/logo.png'}" alt="&{'main.ime'}" /></a>
+<a href="@{Home.index}" id="logo"><img src="@{'/public/images/logo.png'}" alt="&{'main.ime'}" /></a>
 <div class="title">
 <h1>&{'main.title'}</h1>
 <h2>&{'main.secao'}</h2>
@@ -26,17 +26,20 @@
 </div>
 <footer>
 <div class="container">
-<span id="admin"><a href="@{CRUD.index()}">&{'main.admin'}</a></span>
-<span id="authors"><a href="@{Application.about()}">&{'main.authors'}</a></span>
+<span id="admin"><a href="@{CRUD.index}">&{'main.admin'}</a></span>
+<span id="authors"><a href="@{Public.about}">&{'main.authors'}</a></span>
 </div>
 </footer>
 #{if error}
 <script>alert("&{error}");</script>
 #{/if}
-#{if flash.warn}
+#{if flash?.error}
+<script>alert("&{flash.error}");</script>
+#{/if}
+#{if flash?.warn}
 <script>alert("&{flash.warn}");</script>
 #{/if}
-#{if flash.success}
+#{if flash?.success}
 <script>alert("&{flash.success}");</script>
 #{/if}
 </html>

@@ -3,20 +3,22 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
-GET     /about                                  Application.about
-GET     /search                                 Application.search
-GET     /password                               Application.password
-POST    /password                               Application.changePassword
-GET     /cat/{slug}                             Application.cat
-POST    /material/label/{id}                    Application.addLabel
-DELETE  /material/delete/{id}                   Application.delete
-GET     /material/unload/{id}                   Application.unload
-GET     /material/save                          Application.add
-GET     /material/{id}                          Application.edit
-POST    /material/save                          Application.editInventario
-PUT     /material/save                          Application.editInventario
-GET     /material/transfer/{id}                 Application.transfer
+GET     /                                       Home.index
+GET     /about                                  Public.about
+GET     /search                                 Home.search
+GET     /password                               Home.password
+POST    /password                               Home.changePassword
+GET     /cat/{slug}                             Home.showCategoria
+POST    /cat                                    Home.newCategoria
+GET     /material/new                           Home.add
+POST    /material                               Home.addInventario
+GET     /material/{id}                          Home.show
+POST    /material/{id}                          Home.saveInventario
+#PUT     /material/{id}                          Home.saveInventario
+DELETE  /material/{id}                          Home.delInventario
+POST    /material/{id}/label                    Home.addLabel
+GET     /material/{id}/transfer                 Home.transfer
+GET     /material/{id}/unload                   Home.unload
 
 
 # Adminstration

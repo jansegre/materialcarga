@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700)
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700)
 $sans: 'Ubuntu', sans-serif
 
 $c1: #66aaff
@@ -18,11 +18,12 @@ $c2ll: #cacccf
 $ce: #ff6633
 
 $bradius: 6px
-$sradius: 3px
+$sradius: 4px
 $width: 1000px
 $footerh: 60px
-$headerh: 144px
+$headerh: 132px
 $gap: 12px
+$gap2: 6px
 $cat: 150px
 $tfs: 16px
 $tgap: 3px
@@ -63,7 +64,7 @@ input, button, textarea, select
   padding: 2px
     left: 6px
     right: 6px
-  background: rgba($c1ll, 0.5)
+  background: rgba($c1ll, 0.8)
   &:hover, &:active, &:focus
     border:
       color: $c1 !important
@@ -79,6 +80,8 @@ input[type=text], input[type=search], input[type=password], input[type=number], 
     box-shadow: 0px 0px 4px 2px $c1
     background: rgba($c1, 0.2) !important
   width: 200px
+textarea
+  height: 80px
 
 =placeholder
   color: $c2
@@ -110,9 +113,9 @@ label
 
 header
   padding:
-    top: $gap
-    bottom: $gap
-  height: $headerh - 2 * $gap
+    top: $gap2
+    bottom: $gap2
+  height: $headerh - 2 * $gap2
   background-color: $c1l
   border-bottom: solid $c1lm 1px
   img
@@ -121,6 +124,11 @@ header
   h1, h2
     padding:
       top: 16px
+
+#logo
+  img
+    border: none
+    outline: none
 
 .title
   text-align: center
@@ -154,14 +162,14 @@ header
 
 footer
   padding:
-    top: $gap
-    bottom: $gap
-  height: $footerh - 2 * $gap
+    top: $gap2
+    bottom: $gap2
+  height: $footerh - 2 * $gap2
   background-color: $c2l
   border-top: solid $c2ll 1px
   text-align: right
   font:
-    size: 14px
+    size: 12px
   &, a, a:visited
     color: $c2d
   a:hover
@@ -183,7 +191,7 @@ footer
   input[type=text], input[type=password]
     width: 180px
     margin: 5px
-  label:
+  label
     margin: 5px
     width: 108px
 
@@ -218,6 +226,9 @@ footer
     align: right
   margin:
     top: $tgap + 1px
+  ul, li
+    width: 100%
+    padding: 0
   button
     font:
       size: 14px
@@ -225,6 +236,21 @@ footer
     margin:
       bottom: 8px
     list-style: none
+  #addcat
+    input, button
+      display: inline-block
+      background: none
+      border: none
+      padding: $tgap
+      margin: 0
+      text:
+        align: right
+    input
+      width: $cat - 15px - 2 * $tgap
+    button
+      width: 15px
+      padding:
+        right: 0
 
 #home
   display: inline-block
@@ -253,13 +279,21 @@ footer
           weight: bold
       .off a
         color: $c2
-
-#save
-  label
-    width: 140px
-  input#valunit, input#valtotal
-    text:
-      align: right
+  .form
+    fieldset
+      display: table-cell
+      width: 50%
+      margin: 0
+      padding: 0
+      vertical:
+        align: top
+    label
+      width: 140px
+    label, input, select, textarea
+      margin: 5px
+    input#valunit, input#valtotal, input[type=number]
+      text:
+        align: right
 
 #list
   min-height: 14 * ($tfs + 4 * $tgap)
@@ -295,15 +329,20 @@ footer
       size: $tfs
       weight: normal
   th.material, td.material
-    &, input
+    &, input, textarea
       text:
         align: left
   th.entrada, th.valunit, th.valtotal
-    width: 120px
+    width: 100px
   th.date
-    width: 90px
+    width: 68px
   th.submit, td.submit
     &, button
       width: 25px
       height: 100%
       vertical-align: middle
+  td
+    span
+      max-height: $tfs + 2 * $tgap
+      text:
+        overflow: hidden

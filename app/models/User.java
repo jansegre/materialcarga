@@ -9,6 +9,7 @@ import play.data.validation.*;
 import play.libs.Codec;
 
 @Entity
+@Table(name="usuario")
 public class User extends Model {
 
 	@Required
@@ -18,13 +19,14 @@ public class User extends Model {
 	public String email;
 
 	@Required
+	@Password
 	public String passwordHash;
 	
 	@Required
 	public Boolean changePassword;
 	
 	public void setPasswordHash(String password) {
-		if(!this.passwordHash.equals(password)) {
+		if(this.passwordHash == null || !this.passwordHash.equals(password)) {
 			this.passwordHash = hash(password);
 		}
 	}
@@ -42,9 +44,12 @@ public class User extends Model {
 	}
 	public Profile profile;
 
-	public User(String login, String password) {
+	public User(String login, String password, String name) {
 		this.login = login;
 		this.passwordHash = password;
+		this.name = name;
+		this.profile = Profile.USER;
+		this.changePassword = false;
 	}
 	
 	public boolean checkPassword(String password) {
