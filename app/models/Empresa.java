@@ -15,7 +15,6 @@ public class Empresa extends Model {
 
 	public String razaosocial;
 
-	@Required
 	public String cnpj;
 
 	public String endereco;
