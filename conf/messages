@@ -1,3 +1,155 @@
-# You can specialize this file for each language.
-# For example, for French create a messages.fr file
+# Textos em português para o site
 #
+
+# Textos para o aplicativo principal
+main.title=Sistema de Controle de Material Carga
+main.ime=IME
+main.secao=SE/8
+main.authors=desenvolvido por Jan, Emanuelle, Raphaela e Jéssica
+main.admin=Painel de Administração
+
+home.title=Sistema de Controle de Material Carga
+home.welcome=Bem vindo, &{%s}
+home.logout=Sair
+home.password=Mudar senha
+home.add=Carregar
+home.print=Preparar para Impressão
+home.loading=Carregando
+home.home=Home
+home.search=Pesquisar
+
+list.entrada=Entrada
+list.material=Material
+list.valunit=Valor Unitário
+list.valtotal=Valor Total
+list.edit=Editar
+list.delete=Excluir
+list.transfer=Transferir
+list.unload=Descarregar
+list.summary=Mostrando %s até %s do total de %s materiais
+list.empty=Nenhum material foi encontrado.
+list.first=«« Primeiro
+list.prev=« Anterior
+list.next=Próximo »
+list.last=Último »»
+list.incluidoEm=Incluído Em
+
+save.title=Salvar
+save.material=Material
+save.entrada=Entrada
+save.saida=Saída
+save.existencia=Existência
+save.valunit=Valor Unitário
+save.valtotal=Valor Total
+save.classe=Classe
+save.categoria=Categoria
+save.contacontabil=Conta Contábil
+save.fichageral=Ficha Geral
+save.incluidoem=Data de Inclusão
+save.nba=NBa
+save.ni=NI
+save.observacoes=Observações
+save.destino=Destino
+save.submit=Salvar
+save.error=Dados inválidos, corriga os erros.
+save.success=Material salvo com sucesso.
+save.basic=Informações Básicas
+save.simatex=Simatex
+save.nome=Nome
+save.codom=CODOM
+save.nrref=NrRef
+save.pais=País
+save.unidade=Unidade
+save.moeda=Moeda
+save.neensn=NEENSN
+save.scat=Categoria
+save.modalidade=Modalidade
+save.duracao=Duração
+save.dadoscomp=Dados Compl.
+save.caractec=Carac. Técnicas
+save.empresa=Empresa
+save.enome=Nome
+save.razaosocial=Razão Social
+save.cnpj=CNPJ
+save.endereco=Endereço
+save.telefone=Telefone
+save.atividades=Atividades
+save.cage=Cage
+
+save.cat.error=Categoria já existe ou nome inválido.
+
+del.confirm=Excluir permanentemente este material da database?
+del.success=Material excluído com sucesso.
+
+password.title=Mudar senha
+password.current=Senha atual
+password.first=Nova senha
+password.second=Confirmação
+password.submit=Enviar
+password.change=Por favor, mude sua senha.
+password.error=Corrija os erros.
+password.success=Senha mudada com sucesso.
+
+error.403.title=Não Autorizado
+error.403.message=O usuário atual não possui permissão para acessar <strong>&{%s}</strong>.
+error.404.title=Não Encontrado
+error.404.message=Nao há nenhum conteúdo em <strong>&{%s}</strong>.
+error.500.title=Erro no Servidor
+error.500.message=Ocorreu um erro no servidor, o evento foi registrado com id <strong>&{%s}</strong>.
+
+# Textos para modelos
+estado.novo=Novo
+
+# Textos para o modulo secure
+secure.title=Login
+secure.username=Usuário:
+secure.password=Senha:
+secure.remember=Manter conectado
+secure.signin=Entrar
+secure.error=Senha ou usuário inválido.
+secure.logout=Você foi desconectado com sucesso.
+
+# Textos para o modulo crud
+crud.title=Administração
+crud.logout=Sair
+crud.home=Admin
+crud.blank=Novo
+crud.index.title=Escolha a entidade que deseja alterar
+crud.index.objectType=Entidade
+crud.index.action=
+crud.index.add=Adicionar
+crud.add=Adicionar &{%s}
+crud.list.title=&{%s}
+crud.list.size=%d &{%s}
+crud.list.totalSize=%d total
+crud.pagination.previous=« Anterior
+crud.pagination.next=Próximo »
+crud.pagination.last=Último »»
+crud.pagination.first=«« Primeiro
+crud.show.title=Editar &{%s}
+crud.save=Salvar
+crud.saveAndContinue=Salvar e continuar editando
+crud.cancel=Cancelar
+crud.hasErrors=Por favor, corriga o(s) erro(s)
+crud.blank.title=Adicionar &{%s}
+crud.saveAndAddAnother=Salvar e criar outro
+crud.delete=Remover &{%s}
+crud.created=A instância de &{%s} foi criada
+crud.saved=A instância de &{%s} foi salva
+crud.deleted=A instância de &{%s} foi removida
+crud.delete.error=Não é possível remover esse objeto
+crud.search=Procurar
+crud.none=(Nenhum(a))
+crud.selectValue=(Por favor, selecione um valor)
+crud.help.required=Necessário.
+crud.help.minlength=Mínimo de %d caracteres.
+crud.help.maxlength=Máximo de %d caracteres.
+crud.help.email=Email deve ser válido.
+crud.help.dateformat=Formato: &{%s}.
+crud.help.numeric=Campo numérico.
+crud.help.min=Maior que %d.
+crud.help.future=Data no futuro.
+crud.help.past=Data no passado.
+crud.help.after=Depois de %s.
+crud.help.before=Antes de %s.
+crud.help.range=Entre %d e %d

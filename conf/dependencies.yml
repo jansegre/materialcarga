@@ -2,3 +2,8 @@
 
 require:
     - play
+    - play -> sass 1.1
+    - play -> crud
+    - play -> secure
+    - play -> paginate head
+    - play -> search 2.0

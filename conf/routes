@@ -3,13 +3,36 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                       Home.index
+GET     /about                                  Public.about
+GET     /search                                 Home.search
+GET     /password                               Home.password
+POST    /password                               Home.changePassword
+GET     /cat/{slug}                             Home.showCategoria
+POST    /cat                                    Home.newCategoria
+GET     /material/new                           Home.add
+POST    /material                               Home.addInventario
+GET     /material/{id}                          Home.show
+POST    /material/{id}                          Home.saveInventario
+#PUT     /material/{id}                          Home.saveInventario
+DELETE  /material/{id}                          Home.delInventario
+POST    /material/{id}/label                    Home.addLabel
+GET     /material/{id}/transfer                 Home.transfer
+GET     /material/{id}/unload                   Home.unload
+
+
+# Adminstration
+*       /admin                                  module:crud
+
+# Import Secure routes
+*       /                                       module:secure
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
-# Map static resources from the /app/public folder to the /public path
+# Map static resources from the /app/public folder to the / path
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+# *       /{action}/?                             Application.{action}
+# *       /{controller}/{action}/?                {controller}.{action}

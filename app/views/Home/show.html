@@ -1,0 +1,159 @@
+#{extends './layout.html' /}
+#{set title:messages.get('save.title') /}
+<div id="save" class="form">
+#{form inventario?.id == null ? @addInventario() : @saveInventario(inventario.id)}
+<fieldset>
+<legend>&{'save.basic'}</legend>
+#{if inventario?.id != null}
+<input type="hidden" name="inventario.id" value="${inventario.id}" />
+#{/if}
+#{else}
+<input type="hidden" name="inventario.usuario.id" value="${user.id}" />
+#{/else}
+<label for="material">&{'save.material'}</label>
+<textarea id="material" name="inventario.material" required autofocus>${inventario?.material}</textarea>
+<small class="error">#{error 'inventario.material' /}</small>
+<label for="entrada">&{'save.entrada'}</label>
+<input type="number" name="inventario.entrada" id="entrada" pattern="[0-9]*" required value="${inventario?.entrada ? inventario?.entrada : '0'}" />
+<small class="error">#{error 'inventario.entrada' /}</small>
+<label for="saida">&{'save.saida'}</label>
+<input type="number" name="inventario.saida" id="saida" pattern="[0-9]*" value="${inventario?.saida ? inventario?.saida : '0'}" />
+<small class="error">#{error 'inventario.saida' /}</small>
+<label for="existencia">&{'save.existencia'}</label>
+<input type="number" name="inventario.existencia" id="existencia" pattern="[0-9]*" value="${inventario?.existencia}" />
+<small class="error">#{error 'inventario.existencia' /}</small>
+<label for="incluidoem">&{'save.incluidoem'}</label>
+<input type="text" name="inventario.incluidoEm" id="incluidoem" value="${inventario?.incluidoEm?.format("dd/MM/yy")}" />
+<small class="error">#{error 'inventario.incluidoEm' /}</small>
+<label for="valunit">&{'save.valunit'}</label>
+<input type="text" name="inventario.valunit" id="valunit" pattern="[0-9,.]*" required value="${inventario?.valunit}" />
+<small class="error">#{error 'inventario.valunit' /}</small>
+<label for="valtotal">&{'save.valtotal'}</label>
+<input type="text" name="inventario.valtotal" id="valtotal" pattern="[0-9,.]*" value="${inventario?.valtotal}" />
+<small class="error">#{error 'inventario.valtotal' /}</small>
+#{if inventario?.classe?.id != null}
+<input type="hidden" name="inventario.classe.id" value="${inventario.classe.id}" />
+#{/if}
+<label for="classe">&{'save.classe'}</label>
+<input type="text" name="inventario.classe.codigo" id="classe" pattern="[0-9]*" value="${inventario?.classe?.codigo}" />
+<small class="error">#{error 'inventario?.classe' /}</small>
+<label for="categoria">&{'save.categoria'}</label>
+<select name="inventario.categoria.id" id="categoria">
+<option value=""></option>
+#{list items:categorias, as:'c'}
+<option value="${c.id}"${inventario?.categoria?.id == c.id ? ' selected' : ''}>${c.name}</option>
+#{/list}
+</select>
+<small class="error">#{error 'inventario.categoria' /}</small>
+<label for="contacontabil">&{'save.contacontabil'}</label>
+<input type="number" name="inventario.contacontabil" id="contacontabil" pattern="[0-9]*" value="${inventario?.contacontabil}" />
+<small class="error">#{error 'inventario.contacontabil' /}</small>
+<label for="fichageral">&{'save.fichageral'}</label>
+<input type="number" name="inventario.fichageral" id="fichageral" pattern="[0-9]*" value="${inventario?.fichageral}" />
+<small class="error">#{error 'inventario.fichageral' /}</small>
+<label for="nba">&{'save.nba'}</label>
+<input type="text" name="inventario.NBa" id="nba" pattern="[0-9,.]*" value="${inventario?.NBa}" />
+<small class="error">#{error 'inventario.NBa' /}</small>
+<label for="ni">&{'save.ni'}</label>
+<input type="text" name="inventario.NI" id="ni" value="${inventario?.NI}" />
+<small class="error">#{error 'inventario.NI' /}</small>
+<label for="observacoes">&{'save.observacoes'}</label>
+<textarea name="inventario.observacoes" id="observacoes">${inventario?.observacoes}</textarea>
+<small class="error">#{error 'inventario.observacoes' /}</small>
+<label for="destino">&{'save.destino'}</label>
+<input type="text" name="inventario.destino" id="destino" value="${inventario?.destino}" />
+<small class="error">#{error 'inventario.destino' /}</small>
+<ul>
+#{list items:inventario?.codigos, as:'c'}
+<li>${c.codigo}</li>
+#{/list}
+</ul>
+</fieldset>
+<fieldset>
+<legend>&{'save.simatex'}</legend>
+#{if inventario?.simatex?.id != null}
+<input type="hidden" name="inventario.simatex.id" value="${inventario.simatex.id}" />
+#{/if}
+<label for="nome">&{'save.nome'}</label>
+<textarea id="nome" name="inventario.simatex.nome">${inventario?.simatex?.nome}</textarea>
+<small class="error">#{error 'inventario.simatex.nome' /}</small>
+<label for="codom">&{'save.codom'}</label>
+<input id="codom" type="text" name="inventario.simatex.codom" value="${inventario?.simatex?.codom}" />
+<small class="error">#{error 'inventario.simatex.codom' /}</small>
+<label for="nrref">&{'save.nrref'}</label>
+<input id="nrref" type="text" name="inventario.simatex.nrref" value="${inventario?.simatex?.nrref}" />
+<small class="error">#{error 'inventario.simatex.nrref' /}</small>
+<label for="pais">&{'save.pais'}</label>
+<input id="pais" type="text" name="inventario.simatex.pais" value="${inventario?.simatex?.pais}" />
+<small class="error">#{error 'inventario.simatex.pais' /}</small>
+<label for="unidade">&{'save.unidade'}</label>
+<input id="unidade" type="text" name="inventario.simatex.unidade" value="${inventario?.simatex?.unidade}" />
+<small class="error">#{error 'inventario.simatex.unidade' /}</small>
+<label for="moeda">&{'save.moeda'}</label>
+<input id="moeda" type="text" name="inventario.simatex.moeda" value="${inventario?.simatex?.moeda}" />
+<small class="error">#{error 'inventario.simatex.moeda' /}</small>
+<label for="neensn">&{'save.neensn'}</label>
+<input id="neensn" type="text" name="inventario.simatex.NEENSN" value="${inventario?.simatex?.NEENSN}" />
+<small class="error">#{error 'inventario.simatex.NEENSN' /}</small>
+<label for="scat">&{'save.scat'}</label>
+<input id="scat" type="text" name="inventario.simatex.categoria" value="${inventario?.simatex?.categoria}" />
+<small class="error">#{error 'inventario.simatex.categoria' /}</small>
+<label for="modalidade">&{'save.modalidade'}</label>
+<input id="modalidade" type="text" name="inventario.simatex.modalidade" value="${inventario?.simatex?.modalidade}" />
+<small class="error">#{error 'inventario.simatex.modalidade' /}</small>
+<label for="duracao">&{'save.duracao'}</label>
+<input id="duracao" type="text" name="inventario.simatex.duracao" value="${inventario?.simatex?.duracao}" />
+<small class="error">#{error 'inventario.simatex.duracao' /}</small>
+<label for="dadoscomp">&{'save.dadoscomp'}</label>
+<input id="dadoscomp" type="text" name="inventario.simatex.dadoscomp" value="${inventario?.simatex?.dadoscomp}" />
+<small class="error">#{error 'inventario.simatex.dadoscomp' /}</small>
+<label for="caractec">&{'save.caractec'}</label>
+<textarea id="caractec" name="inventario.simatex.caractec">${inventario?.simatex?.caractec}</textarea>
+<small class="error">#{error 'inventario.simatex.caractec' /}</small>
+<legend>&{'save.empresa'}</legend>
+#{if inventario?.empresa?.id != null}
+<input type="hidden" name="inventario.empresa.id" value="${inventario.empresa.id}" />
+#{/if}
+<label for="enome">&{'save.enome'}</label>
+<input id="enome" type="text" name="inventario.empresa.nome" value="${inventario?.empresa?.nome}" />
+<small class="error">#{error 'inventario.empresa.nome' /}</small>
+<label for="razaosocial">&{'save.razaosocial'}</label>
+<input id="razaosocial" type="text" name="inventario.empresa.razaosocial" value="${inventario?.empresa?.razaosocial}" />
+<small class="error">#{error 'inventario.empresa.razaosocial' /}</small>
+<label for="cnpj">&{'save.cnpj'}</label>
+<input id="cnpj" type="text" name="inventario.empresa.cnpj" value="${inventario?.empresa?.cnpj}" />
+<small class="error">#{error 'inventario.empresa.cnpj' /}</small>
+<label for="endereco">&{'save.endereco'}</label>
+<input id="endereco" type="text" name="inventario.empresa.endereco" value="${inventario?.empresa?.endereco}" />
+<small class="error">#{error 'inventario.empresa.endereco' /}</small>
+<label for="telefone">&{'save.telefone'}</label>
+<input id="telefone" type="text" name="inventario.empresa.telefone" value="${inventario?.empresa?.telefone}" />
+<small class="error">#{error 'inventario.empresa.telefone' /}</small>
+<label for="atividades">&{'save.atividades'}</label>
+<input id="atividades" type="text" name="inventario.empresa.atividades" value="${inventario?.empresa?.atividades}" />
+<small class="error">#{error 'inventario.empresa.atividades' /}</small>
+<label for="cage">&{'save.cage'}</label>
+<input id="cage" type="text" name="inventario.empresa.cage" value="${inventario?.empresa?.cage}" />
+<small class="error">#{error 'inventario.empresa.cage' /}</small>
+</fieldset>
+<input class="submit" type="submit" id="submit" value="&{'save.submit'}" />
+#{/form}
+#{if inventario?.id != null}
+#{form @delInventario(inventario.id)}
+<button type="submit" onclick="return confirm('&{'del.confirm'}')">&{'list.delete'}</button>
+#{/form}
+*{<a href="#@{unload(inventario.id)}">&{'list.unload'}</a>
+<a href="#@{transfer(inventario.id)}">&{'list.transfer'}</a>}*
+<script>
+//Adicionar codigo
+$('#addLabel').click(function() {
+	/*$.post('@{addLabel(inventario.id)}', {codigo: '123123'}, function(label) {
+		$('#labels').prepend(
+			'<li>' + label.id + ' ' + label.codigo + '</li>'
+		)
+	}, 'json')*/
+	$('#labels').prepend('<li><input type="text" id="inventario.labels.id" /></li>')
+})
+</script>
+#{/if}
+</div>

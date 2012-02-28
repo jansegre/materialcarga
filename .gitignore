@@ -3,3 +3,14 @@
 /lib
 /test-result
 /logs
+/eclipse
+/precompiled
+/db
+/data
+/.settings
+.gitignore~
+.classpath
+.project
+.pydevproject
+*.log
+

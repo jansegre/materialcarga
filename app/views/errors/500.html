@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>Application error</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=${_response_encoding}"/>	
-    </head>
-    <body>
-        #{if play.mode.name() == 'DEV'}
-            #{500 exception /}
-        #{/if}
-        #{else}
-            <h1>Oops, an error occured</h1>
-            #{if exception instanceof play.exceptions.PlayException}
-                <p>
-                    This exception has been logged with id <strong>${exception.id}</strong>.
-                </p>
-            #{/if}
-        #{/else}
-    </body>
-</html>
+#{extends 'layout.html' /}
+#{set title: messages.get('error.500.title') /}
+<div class="main container">
+#{if play.mode.name() == 'DEV'}
+#{500 exception /}
+#{/if}
+#{else}
+<h1>&{'error.500.title'}</h1>
+<p>&{'error.500.message', exception.id}</p>
+#{/else}
+</div>

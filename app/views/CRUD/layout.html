@@ -1,0 +1,32 @@
+#{extends 'layout.html' /}
+#{set 'moreStyles'}
+<link rel="stylesheet" media="screen" href="@{'/public/styles/admin.sass'}" />
+#{/set}
+<div id="crud">
+<div id="crudBreadcrumb">
+<div class="container">
+<span>
+#{if request.actionMethod != 'index'}
+#{crud.navigation /}
+#{/if}
+#{else}
+<ul><li><a href="@{CRUD.index()}">&{'crud.home'}</a></li></ul>
+#{/else}
+</span>
+<span class="right"><a href="@{Secure.logout()}">&{'crud.logout'}</a></span>
+</div>
+</div>
+#{if flash.success}
+<div class="crudFlash flashSuccess">
+${flash.success}
+</div>
+#{/if}
+#{if flash.error || error}
+<div class="crudFlash flashError">
+${error ?: flash.error}
+</div>
+#{/if}
+<div id="crudContent" class="container">
+#{doLayout /}
+</div>
+</div>

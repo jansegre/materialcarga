@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="${lang ? lang : 'pt'}">
+<meta charset="${_response_encoding}">
+#{get 'moreMetatags' /}
+<link rel="shortcut icon" href="@{'/public/images/favicon.png'}">
+<link rel="stylesheet" href="@{'/public/styles/screen.sass'}" />
+#{get 'moreStyles' /}
+<script src="@{'/public/scripts/jquery-1.6.4.min.js'}"></script>
+*{<script src="@{'/public/scripts/jquery.ba-bbq.min.js'}"></script>}*
+<script src="@{'/public/scripts/jquery.editinplace.min.js'}"></script>
+<script src="@{'/public/scripts/jquery.maskedinput-1.3.min.js'}"></script>
+#{get 'moreScripts' /}
+<title>#{get 'title' /}</title>
+<div class="wrapper">
+<header>
+<div class="container">
+<a href="@{Home.index}" id="logo"><img src="@{'/public/images/logo.png'}" alt="&{'main.ime'}" /></a>
+<div class="title">
+<h1>&{'main.title'}</h1>
+<h2>&{'main.secao'}</h2>
+</div>
+</div>
+</header>
+#{doLayout /}
+<div class="push"></div>
+</div>
+<footer>
+<div class="container">
+<span id="admin"><a href="@{CRUD.index}">&{'main.admin'}</a></span>
+<span id="authors"><a href="@{Public.about}">&{'main.authors'}</a></span>
+</div>
+</footer>
+#{if error}
+<script>alert("&{error}");</script>
+#{/if}
+#{if flash?.error}
+<script>alert("&{flash.error}");</script>
+#{/if}
+#{if flash?.warn}
+<script>alert("&{flash.warn}");</script>
+#{/if}
+#{if flash?.success}
+<script>alert("&{flash.success}");</script>
+#{/if}
+</html>
